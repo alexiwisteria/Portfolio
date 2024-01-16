@@ -1,5 +1,12 @@
+export const metadata = {
+  title: 'Portfolio - Home',
+  description: 'Home page of my portfolio.',
+}
+
 export default function Home() {
-    return (
-        <div>Hello</div>
-    )
+  return (
+    <div>
+      Home
+    </div>
+  );
 }
