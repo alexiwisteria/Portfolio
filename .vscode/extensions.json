@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "ms-vsliveshare.vsliveshare",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    // "wakatime.vscode-wakatime",
+    "github.copilot",
+    "github.copilot-chat",
+    "csstools.postcss",
+    "firsttris.vscode-jest-runner",
+    "GitHub.vscode-github-actions",
+    "ms-playwright.playwright",
+    "ortoni.ortoni",
+    "ms-azuretools.vscode-docker",
+  ]
+}
