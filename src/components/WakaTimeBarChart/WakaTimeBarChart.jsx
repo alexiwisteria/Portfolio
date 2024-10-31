@@ -52,6 +52,8 @@ const WakaTimeBarChart = () => {
               backgroundColor: '#808080',
               borderColor: '#4A4A4A',
               borderWidth: 1,
+              hoverBackgroundColor: '#505050', // Darker color on hover for better contrast
+              hoverBorderWidth: 2,
             },
           ],
         });
@@ -84,6 +86,8 @@ const WakaTimeBarChart = () => {
               ...dataset,
               backgroundColor: '#808080',
               borderColor: '#4A4A4A',
+              hoverBackgroundColor: '#505050', // Darker color for hover effect
+              hoverBorderWidth: 2,
             })),
           }}
           options={{
@@ -114,6 +118,10 @@ const WakaTimeBarChart = () => {
                 bodyFont: {
                   family: 'Cutive Mono',
                   size: window.innerWidth < 768 ? 10 : 12,
+                },
+                callbacks: {
+                  // Custom tooltip label formatting
+                  label: (context) => `${context.raw.toFixed(2)} hours`, // Display time to two decimal places
                 },
               },
             },
@@ -156,7 +164,7 @@ const WakaTimeBarChart = () => {
                     family: 'Cutive Mono',
                     size: window.innerWidth < 768 ? 8 : 12,
                   },
-                  maxRotation: 45, // Tilt labels for smaller screens
+                  maxRotation: 45,
                 },
                 grid: {
                   color: isDarkTheme ? '#666666' : '#E0E0E0',
