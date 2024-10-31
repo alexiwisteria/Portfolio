@@ -47,7 +47,7 @@ const WakaTimeBarChart = () => {
           labels,
           datasets: [
             {
-              label: 'Hours Spent Coding (Last 7 Days)',
+              label: 'Hours Spent Coding',
               data,
               backgroundColor: '#808080',
               borderColor: '#4A4A4A',
