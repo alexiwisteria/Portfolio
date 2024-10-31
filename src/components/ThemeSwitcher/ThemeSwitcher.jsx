@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
 export default function ThemeSwitcher({ darkClassName }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(false); // Start in light mode
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
