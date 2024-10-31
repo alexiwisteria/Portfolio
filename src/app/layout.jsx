@@ -45,10 +45,6 @@ export default function RootLayout({ children }) {
       {children}
     </main>
     <Footer className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12" />
-    <main className={`min-h-screen my-8 mx-4 sm:mx-12 sm:my-10 md:mx-24 md:my-12 lg:mx-48 lg:my-14 xl:mx-96 xl:my-16 ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'}`}>
-      {children}
-    </main>
-    <Footer className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16" />
     </body>
     </html>
   );
