@@ -1,4 +1,4 @@
-"use client"; // Required for client-side rendering in Next.js
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -8,7 +8,6 @@ import { FaPython, FaJsSquare, FaJava, FaPhp, FaHtml5, FaCss3Alt, FaSwift, FaFil
 import { VscJson } from 'react-icons/vsc';
 import { SiMarkdown } from 'react-icons/si';
 
-// Register necessary components with ChartJS for pie chart functionality
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const WakaTimePieChart = () => {
@@ -20,6 +19,7 @@ const WakaTimePieChart = () => {
       const isDark = document.documentElement.classList.contains('dark');
       setIsDarkTheme(isDark);
     };
+
     updateTheme();
 
     const observer = new MutationObserver(updateTheme);
@@ -67,38 +67,43 @@ const WakaTimePieChart = () => {
 
   if (!chartData) {
     return (
-      <div className="w-full p-4 rounded-md bg-white text-gray-800 dark:bg-black dark:text-gray-400 font-cutive-mono text-center">
+      <div className="w-full p-4 rounded-md bg-white text-gray-800 dark:bg-black dark:text-gray-400 font-cutive-mono">
         Loading...
       </div>
     );
   }
 
+  // Determine chart size based on screen width
+  const chartSize = {
+    width: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
+    height: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
+  };
+
   return (
-    <div className={`w-full max-w-xs sm:max-w-md md:max-w-lg mx-auto p-4 sm:p-6 md:p-8 rounded-md transition-colors ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} font-cutive-mono`}>
-      <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-4 sm:mb-6 md:mb-8">
+    <div className={`w-full p-4 md:p-6 lg:p-8 rounded-md transition-colors ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} font-cutive-mono`}>
+      <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-center mb-4 lg:mb-8">
         Dev Spectrum: This Week in Code
       </h2>
-      <div className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-lg mx-auto">
+      <div className="flex justify-center mx-auto">
         <Pie
           data={chartData}
+          width={chartSize.width}
+          height={chartSize.height}
           options={{
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: {
-                display: false,
-              },
+              legend: { display: false },
               title: {
                 display: true,
                 text: 'Language Breakdown by Percentage (%)',
                 color: isDarkTheme ? '#FFFFFF' : '#333333',
-                font: {
-                  family: 'Cutive Mono',
-                  size: 14,
-                  weight: 'bold',
-                },
+                font: { family: 'Cutive Mono', size: 14, weight: 'bold' },
               },
               tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
                 callbacks: {
                   label: function (context) {
                     const label = context.label || '';
@@ -106,13 +111,8 @@ const WakaTimePieChart = () => {
                     return `${label}: ${value.toFixed(2)}%`;
                   },
                 },
-                bodyFont: {
-                  family: 'Cutive Mono',
-                },
-                titleFont: {
-                  family: 'Cutive Mono',
-                  size: 12,
-                },
+                bodyFont: { family: 'Cutive Mono' },
+                titleFont: { family: 'Cutive Mono', size: 12 },
               },
             },
           }}
@@ -123,7 +123,7 @@ const WakaTimePieChart = () => {
         {chartData.labels.map((language, index) => (
           <div
             key={language}
-            className="flex items-center m-1 sm:m-2 text-xs sm:text-sm md:text-base font-medium"
+            className="flex items-center m-2 text-xs sm:text-sm lg:text-md font-medium"
             style={{
               color: chartData.datasets[0].backgroundColor[index],
               filter: isDarkTheme ? 'brightness(1.5)' : 'brightness(0.8)',
@@ -133,7 +133,7 @@ const WakaTimePieChart = () => {
               href={documentationLinks[language] || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg sm:text-xl mr-1 sm:mr-2"
+              className="text-lg sm:text-xl mr-2 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               {languageIcons[language] || <FaFileCode />}
             </a>
