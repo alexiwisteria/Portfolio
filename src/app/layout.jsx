@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
-    // Set theme based on system preference or previous choice
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme');
     const initialTheme = savedTheme ? savedTheme === 'dark' : prefersDark;
@@ -41,10 +40,11 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${cutiveMono.className}`}>
     <body className={`transition-colors duration-300 ${isDarkTheme ? 'text-darkText bg-darkBackground' : 'text-lightText bg-lightBackground'}`}>
     <Navbar />
-    <main className={`min-h-screen my-8 mx-4 sm:mx-12 sm:my-10 md:mx-24 md:my-12 lg:mx-48 lg:my-14 xl:mx-96 xl:my-16 ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'}`}>
+    <main className={`min-h-screen my-4 mx-2 sm:my-6 sm:mx-4 md:my-8 md:mx-6 lg:my-10 lg:mx-8 xl:my-12 xl:mx-10
+                          ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'}`}>
       {children}
     </main>
-    <Footer className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16" />
+    <Footer className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14" />
     </body>
     </html>
   );
