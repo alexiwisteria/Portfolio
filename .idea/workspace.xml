@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3c6ec7a-0b49-4f45-aa8d-91cdae5fb993" name="Changes" comment="ru">
-      <change afterPath="$PROJECT_DIR$/src/components/Card/Card.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/CodeComputer.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/HomePageImg.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavBar/NavBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SkillsWidget/SkillsWidget.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ThemeSwitcher/ThemeSwitcher.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UsesSection/UsesSection.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/WakaTimeBarChart/WakaTimeBarChart.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/WakaTimeLanguagesChart/WakaTimeLanguagesChart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/about/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/projects/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/projects/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/uses/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/uses/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.spec.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +107,7 @@
       <workItem from="1730078732672" duration="1339000" />
       <workItem from="1730130896559" duration="2247000" />
       <workItem from="1730172588349" duration="31451000" />
-      <workItem from="1730389679889" duration="4393000" />
+      <workItem from="1730389679889" duration="4786000" />
     </task>
     <servers />
   </component>
