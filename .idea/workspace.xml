@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3c6ec7a-0b49-4f45-aa8d-91cdae5fb993" name="Changes" comment="ru" />
+    <list default="true" id="c3c6ec7a-0b49-4f45-aa8d-91cdae5fb993" name="Changes" comment="ru">
+      <change afterPath="$PROJECT_DIR$/src/components/Card/Card.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/CodeComputer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/HomePageImg.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NavBar/NavBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SkillsWidget/SkillsWidget.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ThemeSwitcher/ThemeSwitcher.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UsesSection/UsesSection.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/WakaTimeBarChart/WakaTimeBarChart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/WakaTimeLanguagesChart/WakaTimeLanguagesChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/about/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/about/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/projects/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/projects/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/uses/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/uses/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.spec.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,8 +59,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Node.js.card.jsx.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/alexiwisteria/Documents/GitHub/cs220-portfolio-alex/src/components/HomePageImage&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -47,10 +73,26 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/HomePageImage" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/ProjectCard" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/app/Layout" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ProjectCard.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/components/ProjectCard/ProjectCard.jsx" working-dir="$PROJECT_DIR$/src/components/ProjectCard">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.ProjectCard.jsx" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -80,6 +122,14 @@
       <workItem from="1729482439495" duration="816000" />
       <workItem from="1729798826745" duration="369000" />
       <workItem from="1729923509512" duration="198000" />
+      <workItem from="1729952686277" duration="16477000" />
+      <workItem from="1729996409671" duration="7649000" />
+      <workItem from="1730057113891" duration="9737000" />
+      <workItem from="1730071714413" duration="1316000" />
+      <workItem from="1730078732672" duration="1339000" />
+      <workItem from="1730130896559" duration="2247000" />
+      <workItem from="1730172588349" duration="31451000" />
+      <workItem from="1730389679889" duration="4393000" />
     </task>
     <servers />
   </component>
