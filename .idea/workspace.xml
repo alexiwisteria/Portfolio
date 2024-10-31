@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3c6ec7a-0b49-4f45-aa8d-91cdae5fb993" name="Changes" comment="ru">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/components/Card/Card.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/CodeComputer.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/HomePageImage/HomePageImg.jsx" afterDir="false" />
@@ -28,6 +29,9 @@
       <change beforePath="$PROJECT_DIR$/src/components/Button/Button.module.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Button/Button.spec.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> OG/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +133,11 @@
       <workItem from="1730078732672" duration="1339000" />
       <workItem from="1730130896559" duration="2247000" />
       <workItem from="1730172588349" duration="31451000" />
+<<<<<<< HEAD
       <workItem from="1730389679889" duration="4393000" />
+=======
+      <workItem from="1730389679889" duration="4786000" />
+>>>>>>> OG/main
     </task>
     <servers />
   </component>
