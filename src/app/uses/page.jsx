@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const sections = [
   {
@@ -39,7 +39,7 @@ export default function Uses() {
 
   useEffect(() => {
     const updateTheme = () => {
-      const isDark = document.documentElement.classList.contains('dark');
+      const isDark = document.documentElement.classList.contains("dark");
       setIsDarkTheme(isDark);
     };
 
@@ -49,15 +49,19 @@ export default function Uses() {
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className={`p-6 font-mono max-w-3xl mx-auto transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      <h1 className="text-4xl font-bold mb-8 text-center">Uses</h1>
+    <div
+      className={`p-4 sm:p-6 lg:p-8 font-mono max-w-3xl mx-auto transition-colors duration-300 ${
+        isDarkTheme ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 text-center">Uses</h1>
       {sections.map((section) => (
         <Section key={section.title} title={section.title} items={section.items} isDarkTheme={isDarkTheme} />
       ))}
@@ -67,9 +71,15 @@ export default function Uses() {
 
 function Section({ title, items, isDarkTheme }) {
   return (
-    <section className={`mt-10 w-full transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      <h2 className="text-2xl font-semibold mb-4 border-b-2 border-gray-300">{title}</h2>
-      <ul className="space-y-2">
+    <section
+      className={`mt-8 lg:mt-10 w-full transition-colors duration-300 ${
+        isDarkTheme ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-3 lg:mb-4 border-b-2 border-gray-300">
+        {title}
+      </h2>
+      <ul className="space-y-3 sm:space-y-2 lg:space-y-4">
         {items.map((item, index) => (
           <Item key={index} label={item.label} detail={item.detail} isDarkTheme={isDarkTheme} />
         ))}
@@ -81,8 +91,20 @@ function Section({ title, items, isDarkTheme }) {
 function Item({ label, detail, isDarkTheme }) {
   return (
     <li className="flex items-start transition-colors duration-300">
-      <span className={`font-semibold mr-4 whitespace-pre-line ${isDarkTheme ? 'text-gray-300' : 'text-gray-500'}`}>{label}:</span>
-      <span className={`${isDarkTheme ? 'text-gray-200' : 'text-gray-700'} flex-1`}>{detail}</span>
+      <span
+        className={`font-semibold mr-2 sm:mr-4 whitespace-pre-line ${
+          isDarkTheme ? "text-gray-300" : "text-gray-500"
+        }`}
+      >
+        {label}:
+      </span>
+      <span
+        className={`flex-1 ${
+          isDarkTheme ? "text-gray-200" : "text-gray-700"
+        }`}
+      >
+        {detail}
+      </span>
     </li>
   );
 }
