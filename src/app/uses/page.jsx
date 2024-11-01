@@ -57,8 +57,8 @@ export default function Uses() {
 
   return (
     <div
-      className={`p-4 sm:p-6 lg:p-8 font-mono max-w-3xl mx-auto transition-colors duration-300 ${
-        isDarkTheme ? "bg-black text-white" : "bg-white text-black"
+      className={`p-4 sm:p-6 lg:p-8 font-[Cutive Mono] max-w-3xl mx-auto transition-colors duration-300 ${
+        isDarkTheme ? "bg-darkBackground text-darkText" : "bg-lightBackground text-lightText"
       }`}
     >
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 text-center">Uses</h1>
@@ -73,10 +73,10 @@ function Section({ title, items, isDarkTheme }) {
   return (
     <section
       className={`mt-8 lg:mt-10 w-full transition-colors duration-300 ${
-        isDarkTheme ? "bg-black text-white" : "bg-white text-black"
+        isDarkTheme ? "bg-darkBackground text-darkText border-darkBorder" : "bg-lightBackground text-lightText border-lightBorder"
       }`}
     >
-      <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-3 lg:mb-4 border-b-2 border-gray-300">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-3 lg:mb-4 border-b-2 border-current">
         {title}
       </h2>
       <ul className="space-y-3 sm:space-y-2 lg:space-y-4">
@@ -93,14 +93,14 @@ function Item({ label, detail, isDarkTheme }) {
     <li className="flex items-start transition-colors duration-300">
       <span
         className={`font-semibold mr-2 sm:mr-4 whitespace-pre-line ${
-          isDarkTheme ? "text-gray-300" : "text-gray-500"
+          isDarkTheme ? "text-darkAccent" : "text-lightAccent"
         }`}
       >
         {label}:
       </span>
       <span
         className={`flex-1 ${
-          isDarkTheme ? "text-gray-200" : "text-gray-700"
+          isDarkTheme ? "text-darkText" : "text-lightText"
         }`}
       >
         {detail}
