@@ -79,7 +79,7 @@ const Home = () => {
         <Button
           href="/projects"
           customClasses={`extra-class text-md md:text-lg ${themeClasses}`}
-          handleClick={() => console.log("Projects Portal button clicked!")}
+          onClick={() => console.log("Projects Portal button clicked!")}
         >
           Projects Portal
         </Button>

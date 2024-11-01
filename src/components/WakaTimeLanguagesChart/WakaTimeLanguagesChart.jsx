@@ -12,21 +12,10 @@ import { SiMarkdown } from 'react-icons/si';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-/**
- * WakaTimePieChart Component
- * Renders a Pie chart displaying coding time percentages for various languages.
- * Fetches data from WakaTime API and adapts theme based on user settings.
- *
- * @component
- * @returns {JSX.Element} WakaTimePieChart component
- */
 const WakaTimePieChart = () => {
-  const [chartData, setChartData] = useState(null); // Stores chart data
-  const [isDarkTheme, setIsDarkTheme] = useState(false); // Tracks theme
+  const [chartData, setChartData] = useState(null);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  /**
-   * Updates theme state based on the presence of a 'dark' class on <html>.
-   */
   useEffect(() => {
     const updateTheme = () => {
       setIsDarkTheme(document.documentElement.classList.contains('dark'));
@@ -34,7 +23,6 @@ const WakaTimePieChart = () => {
 
     updateTheme();
 
-    // Watch for changes to <html> class attribute for theme updates
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -44,9 +32,6 @@ const WakaTimePieChart = () => {
     return () => observer.disconnect();
   }, []);
 
-  /**
-   * Fetches language data from WakaTime API and processes it for chart display.
-   */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,8 +43,8 @@ const WakaTimePieChart = () => {
         const labels = languageData.map((item) => item.name);
         const dataValues = languageData.map((item) => item.percent);
 
-        const lightColors = ['#262626', '#404040', '#595959', '#737373', '#8c8c8c', '#a6a6a6'];
-        const darkColors = ['#ffffff', '#d6d6d6', '#bdbdbd', '#a3a3a3', '#8a8a8a', '#757575'];
+        const lightColors = ['#E0ECE4', '#F7F2E7', '#D8D3CD', '#797A7E', '#8c8c8c', '#a6a6a6'];
+        const darkColors = ['#B8C8BF', '#E4DABC', '#BFB6A6', '#666667', '#737373', '#858585'];
 
         setChartData({
           labels,
@@ -81,7 +66,6 @@ const WakaTimePieChart = () => {
     fetchData();
   }, [isDarkTheme]);
 
-  // Display loading state if chart data is still loading
   if (!chartData) {
     return (
       <div className="w-full p-4 rounded-md bg-white text-gray-800 dark:bg-black dark:text-gray-400 font-cutive-mono">
@@ -90,9 +74,6 @@ const WakaTimePieChart = () => {
     );
   }
 
-  /**
-   * Determine chart size dynamically based on screen width.
-   */
   const chartSize = {
     width: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
     height: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
@@ -160,7 +141,6 @@ const WakaTimePieChart = () => {
   );
 };
 
-// Mapping language names to icons
 const languageIcons = {
   Python: <FaPython />,
   JavaScript: <FaJsSquare />,
@@ -173,7 +153,6 @@ const languageIcons = {
   Markdown: <SiMarkdown />,
 };
 
-// Mapping language names to documentation links
 const documentationLinks = {
   Python: 'https://docs.python.org/3/',
   JavaScript: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
