@@ -1,5 +1,3 @@
-// page.jsx
-
 "use client";
 
 import React from "react";
@@ -49,18 +47,18 @@ export default function About() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-8 max-w-5xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightBackground transition-colors duration-300">
+    <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText transition-colors duration-300 min-h-screen">
       {/* Main content container with responsive width and padding */}
-      <div className="w-full space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="w-full space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full justify-items-center">
 
           {/* About Me Card - Displays personal background and career information */}
-          <div className="md:col-span-2 flex justify-center items-center">
+          <div className="md:col-span-2 flex justify-center">
             <Card
               title="About Me"
               content={
                 <>
-                  <p className="text-base md:text-lg mb-4">
+                  <p>
                     I got hooked on software engineering because I love figuring
                     out how things work—and how to make them work better. Right
                     now, I&apos;m a Software Engineering student at Ensign College,
@@ -69,7 +67,7 @@ export default function About() {
                     build software that&apos;s solid, user-friendly, and genuinely
                     useful.
                   </p>
-                  <p className="text-base md:text-lg">
+                  <p>
                     I also work as a Help Desk Technician at Ensign, where I had a
                     chance to jump into a big project: helping transition our
                     whole campus to a new WiFi network. From troubleshooting
@@ -86,33 +84,33 @@ export default function About() {
           </div>
 
           {/* Skills Widget - Displays skill-based information in a grid layout */}
-          <div className="md:col-span-2 flex justify-center items-center">
+          <div className="md:col-span-2 flex justify-center">
             <SkillsWidget />
           </div>
 
           {/* Carousel Section - Displays coursework projects with a sliding interface */}
-          <div className="md:col-span-2">
-            <h1 className="font-semibold text-2xl text-center mb-6">Check Out My Coursework</h1>
+          <div className="md:col-span-2 flex flex-col items-center">
+            <h1 className="font-semibold text-xl sm:text-2xl md:text-3xl text-center mb-4 sm:mb-6">Check Out My Coursework</h1>
 
             {/* Carousel Component - uses activeIndex state to track current item */}
             <Carousel
-              className="w-full max-w-lg mx-auto"
+              className="w-full max-w-md sm:max-w-lg"
               activeIndex={activeIndex}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
             >
-              <CarouselContent>
+              <CarouselContent className="flex justify-center">
                 {/* Map through projects array to render each project as a CarouselItem */}
                 {projects.map((project, index) => (
-                  <CarouselItem key={index} className="basis-full">
-                    <div className="p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300">
+                  <CarouselItem key={index} className="basis-full flex justify-center">
+                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300">
                       <a
                         href={project.link}
                         aria-label={`${project.title} link`}
                         className="block text-center"
                       >
-                        <h3 className="text-lg font-bold mb-2">{project.title}</h3>
-                        <p>{project.description}</p>
+                        <h3 className="text-base sm:text-lg font-bold mb-2">{project.title}</h3>
+                        <p className="text-sm sm:text-base">{project.description}</p>
                       </a>
                     </div>
                   </CarouselItem>
@@ -121,8 +119,8 @@ export default function About() {
 
               {/* Carousel Navigation Buttons - Allow user to move between items */}
               <div className="flex justify-center gap-2 mt-4">
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious onClick={handlePrevious} />
+                <CarouselNext onClick={handleNext} />
               </div>
             </Carousel>
           </div>
