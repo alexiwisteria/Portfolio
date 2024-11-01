@@ -45,7 +45,7 @@ export default function ThemeSwitcher({ darkClassName }) {
       onClick={toggleTheme}
       className={`${
         isDark ? 'dark:hover:bg-lightAccent' : 'hover:bg-darkText'
-      } p-2 rounded transition-colors duration-300 flex items-center`}
+      } p-2 rounded flex items-center`}
       aria-label="Toggle theme"
     >
       {isDark ? (

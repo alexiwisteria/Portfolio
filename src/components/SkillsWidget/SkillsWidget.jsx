@@ -61,7 +61,7 @@ const SkillsWidget = () => {
   // Renders the SkillsWidget with language proficiency bars
   return (
     <div
-      className={`p-4 sm:p-6 max-w-full sm:max-w-lg mx-auto rounded-lg transition-colors
+      className={`p-4 sm:p-6 max-w-full sm:max-w-lg mx-auto rounded-lg
                   bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText
                   ${cutiveMono.className}`} // Applies Cutive Mono font
     >

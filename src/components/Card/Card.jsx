@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
  */
 const Card = ({ title, content }) => {
   return (
-    <div className="card-container p-6 max-w-lg mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText transition-colors duration-300">
+    <div className="card-container p-6 max-w-lg mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
       <h3 className="text-lg font-bold text-center font-cutive-mono tracking-wide m-0">
         {title}
       </h3>

@@ -47,7 +47,7 @@ const Home = () => {
   }, []);
 
   // Define theme-based classes for easy reusability across sections
-  const themeClasses = `${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} transition-colors duration-300 ${cutiveMono.className}`;
+  const themeClasses = `${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} 0 ${cutiveMono.className}`;
 
   return (
     <div className={`container mx-auto p-4 md:p-8 ${themeClasses}`}>

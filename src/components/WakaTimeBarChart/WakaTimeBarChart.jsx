@@ -95,7 +95,7 @@ const WakaTimeBarChart = () => {
 
   // Render the bar chart with configured options
   return (
-    <div className={`w-full p-4 md:p-8 rounded-md transition-colors ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} font-cutive-mono`}>
+    <div className={`w-full p-4 md:p-8 rounded-md ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} font-cutive-mono`}>
       <h2 className="text-lg md:text-xl font-semibold text-center mb-4 md:mb-8">
         Week in Code: Hourly Breakdown
       </h2>

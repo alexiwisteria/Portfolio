@@ -62,7 +62,7 @@ Carousel.displayName = "Carousel";
  */
 const CarouselContent = ({ className, children, activeIndex, ...props }) => (
   <div
-    className={cn("flex transition-transform duration-300", className)}
+    className={cn("flex", className)}
     style={{ transform: `translateX(-${activeIndex * 100}%)` }}
     {...props}
   >

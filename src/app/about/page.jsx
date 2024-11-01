@@ -52,7 +52,7 @@ export default function About() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText transition-colors duration-300 min-h-screen">
+    <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText min-h-screen">
       <div className="w-full space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full justify-items-center">
 
@@ -106,7 +106,7 @@ export default function About() {
               <CarouselContent className="flex justify-center">
                 {projects.map((project, index) => (
                   <CarouselItem key={index} className="basis-full flex justify-center">
-                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                       <a
                         href={project.link}
                         aria-label={`Link to ${project.title}`}

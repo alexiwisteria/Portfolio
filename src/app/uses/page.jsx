@@ -60,7 +60,7 @@ export default function Uses() {
 
   return (
     <div
-      className={`p-4 sm:p-6 lg:p-8 font-[Cutive Mono] max-w-3xl mx-auto transition-colors duration-300 ${
+      className={`p-4 sm:p-6 lg:p-8 font-[Cutive Mono] max-w-3xl mx-auto ${
         isDarkTheme ? "bg-darkBackground text-darkText" : "bg-lightBackground text-lightText"
       }`}
     >
@@ -89,7 +89,7 @@ export default function Uses() {
 function Section({ title, items, isDarkTheme }) {
   return (
     <section
-      className={`mt-8 lg:mt-10 w-full transition-colors duration-300 ${
+      className={`mt-8 lg:mt-10 w-full ${
         isDarkTheme ? "bg-darkBackground text-darkText border-darkBorder" : "bg-lightBackground text-lightText border-lightBorder"
       }`}
     >
@@ -121,7 +121,7 @@ function Section({ title, items, isDarkTheme }) {
  */
 function Item({ label, detail, isDarkTheme }) {
   return (
-    <li className="flex items-start transition-colors duration-300">
+    <li className="flex items-start">
       <span
         className={`font-semibold mr-2 sm:mr-4 whitespace-pre-line ${
           isDarkTheme ? "text-darkAccent" : "text-lightAccent"

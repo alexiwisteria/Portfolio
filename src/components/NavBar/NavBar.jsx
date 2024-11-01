@@ -51,25 +51,22 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`p-4 transition-colors font-cutive-mono ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'}`}>
+    <nav className={`p-4 font-cutive-mono ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'}`}>
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4 relative" ref={dropdownRef}>
           <button
             onClick={toggleDropdown}
-            className={`focus:outline-none flex items-center justify-center p-2 rounded transition-colors duration-300 ${
-              isDarkTheme ? 'dark:hover:bg-lightAccent' : 'hover:bg-darkText'
+            className={`focus:outline-none flex items-center justify-center p-2 rounded ${
+              isDarkTheme ? 'hover:bg-lightAccent' : 'hover:bg-darkText'
             }`}
             aria-label="Toggle menu"
           >
             <FaBars size={28} className="text-current" />
           </button>
-          <Link href="/" className="focus:outline-none flex items-center justify-center" aria-label="Home">
-            <FaHome
-              size={40}
-              className={`p-2 rounded transition-colors duration-300 ${
-                isDarkTheme ? 'dark:hover:bg-lightAccent' : 'hover:bg-darkText'
-              }`}
-            />
+          <Link href="/" aria-label="Home">
+            <div className={`p-2 rounded flex items-center justify-center ${isDarkTheme ? 'hover:bg-lightAccent' : 'hover:bg-darkText'}`}>
+              <FaHome size={28} className="text-current" />
+            </div>
           </Link>
           {isDropdownOpen && (
             <div

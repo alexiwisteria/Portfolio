@@ -23,10 +23,10 @@ const ProjectCard = ({ title, description, link, content, footer }) => {
   return (
     <a
       href={link}
-      className="block transition-transform hover:scale-105 no-underline"
+      className="block hover:scale-105 no-underline"
       aria-label={`Link to ${title}`}
     >
-      <Card className="h-full bg-lightBackground dark:bg-darkBackground hover:shadow-lg transition-shadow cursor-pointer font-cutive-mono border-lightBorder dark:border-darkBorder text-lightText dark:text-darkText">
+      <Card className="h-full bg-lightBackground dark:bg-darkBackground hover:shadow-lg cursor-pointer font-cutive-mono border-lightBorder dark:border-darkBorder text-lightText dark:text-darkText">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-lg font-semibold text-lightAccent dark:text-darkAccent">

@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={cutiveMono.className}>
     <body
-      className={`transition-colors duration-300 ${
+      className={`transition-colors ${
         isDarkTheme ? 'text-darkText bg-darkBackground' : 'text-lightText bg-lightBackground'
       }`}
     >
