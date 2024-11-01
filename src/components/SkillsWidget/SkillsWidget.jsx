@@ -68,16 +68,16 @@ const SkillsWidget = () => {
   // Main rendering of the widget
   return (
     <div
-      className={`p-6 max-w-lg mx-auto rounded-lg transition-colors
+      className={`p-4 sm:p-6 max-w-full sm:max-w-lg mx-auto rounded-lg transition-colors
                   bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText
                   ${cutiveMono.className}`} // Uses Cutive Mono font
     >
       {/* Title for the widget */}
-      <h2 className="text-2xl font-semibold text-center mb-2 text-lightAccent dark:text-darkAccent">
+      <h2 className="text-xl sm:text-2xl font-semibold text-center mb-2 text-lightAccent dark:text-darkAccent">
         Coding Language Proficiency
       </h2>
       {/* Subtitle indicating proficiency level measurement */}
-      <p className="text-center text-sm text-lightText dark:text-darkBorder mb-6">
+      <p className="text-center text-xs sm:text-sm text-lightText dark:text-darkBorder mb-4 sm:mb-6">
         Reflecting progress toward proficiency (based on 540 hours; approx. 2-3 hours/day for 3-6 months)
       </p>
 
@@ -85,23 +85,23 @@ const SkillsWidget = () => {
       <div className="space-y-4">
         {proficiencyData.map((language) => (
           // Language proficiency bar wrapper
-          <div key={language.name} className="flex items-center justify-between space-x-4">
+          <div key={language.name} className="flex items-center justify-between space-x-2 sm:space-x-4">
             {/* Language name styling */}
-            <span className="w-24 text-right font-medium text-lightAccent dark:text-darkAccent">
+            <span className="w-16 sm:w-24 text-right text-xs sm:text-base font-medium text-lightAccent dark:text-darkAccent">
               {language.name}
             </span>
             {/* Background for proficiency bar */}
-            <div className="relative w-64 h-4 rounded-lg overflow-hidden bg-lightBorder dark:bg-darkBorder">
+            <div className="relative w-40 sm:w-64 h-3 sm:h-4 rounded-lg overflow-hidden bg-lightBorder dark:bg-darkBorder">
               {/* Fills in proficiency bar, width set by proficiency percentage */}
               <div
-                className="h-4 bg-lightAccent dark:bg-lightAccent"
+                className="h-3 sm:h-4 bg-lightAccent dark:bg-lightAccent"
                 style={{
                   width: `${language.proficiency}%`, // Dynamically sets width by proficiency
                 }}
               ></div>
             </div>
             {/* Proficiency percentage display */}
-            <span className="w-12 text-right font-semibold text-lightAccent dark:text-darkAccent">
+            <span className="w-8 sm:w-12 text-right text-xs sm:text-base font-semibold text-lightAccent dark:text-darkAccent">
               {language.proficiency}%
             </span>
           </div>
