@@ -13,7 +13,6 @@ import {
 
 // About component - Primary function for the About page content
 export default function About() {
-  // Sample projects data for display in the carousel
   const projects = [
     {
       title: "Data Structures",
@@ -32,33 +31,28 @@ export default function About() {
     }
   ];
 
-  // Active index state for tracking the current carousel item
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  // Carousel navigation functions
   const handlePrevious = () => {
-    // Move to the previous item, with wrap-around functionality
     setActiveIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
   };
 
   const handleNext = () => {
-    // Move to the next item, with wrap-around functionality
     setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText transition-colors duration-300 min-h-screen">
-      {/* Main content container with responsive width and padding */}
+    <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText transition-colors duration-300 min-h-screen">
       <div className="w-full space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full justify-items-center">
 
-          {/* About Me Card - Displays personal background and career information */}
-          <div className="md:col-span-2 flex justify-center">
+          {/* About Me Card */}
+          <div className="md:col-span-2 flex justify-center w-full max-w-md sm:max-w-lg lg:max-w-2xl">
             <Card
               title="About Me"
               content={
                 <>
-                  <p>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl">
                     I got hooked on software engineering because I love figuring
                     out how things work—and how to make them work better. Right
                     now, I&apos;m a Software Engineering student at Ensign College,
@@ -67,57 +61,58 @@ export default function About() {
                     build software that&apos;s solid, user-friendly, and genuinely
                     useful.
                   </p>
-                  <p>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl mt-4">
                     I also work as a Help Desk Technician at Ensign, where I had a
                     chance to jump into a big project: helping transition our
                     whole campus to a new WiFi network. From troubleshooting
                     network quirks to making sure everything was stable, it taught
                     me a lot about staying calm under pressure and focusing on the
                     details. This experience really reinforced my passion for
-                    Quality Assurance and full stack development. I want to create
-                    software that people can rely on—software that feels smooth,
-                    easy, and just works.
+                    Quality Assurance and full stack development.
                   </p>
                 </>
               }
             />
           </div>
 
-          {/* Skills Widget - Displays skill-based information in a grid layout */}
-          <div className="md:col-span-2 flex justify-center">
+          {/* Skills Widget */}
+          <div className="md:col-span-2 flex justify-center w-full max-w-md sm:max-w-lg lg:max-w-2xl">
             <SkillsWidget />
           </div>
 
-          {/* Carousel Section - Displays coursework projects with a sliding interface */}
-          <div className="md:col-span-2 flex flex-col items-center">
-            <h1 className="font-semibold text-xl sm:text-2xl md:text-3xl text-center mb-4 sm:mb-6">Check Out My Coursework</h1>
+          {/* Carousel Section */}
+          <div className="md:col-span-2 flex flex-col items-center w-full">
+            <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-4 sm:mb-6">
+              Check Out My Coursework
+            </h1>
 
-            {/* Carousel Component - uses activeIndex state to track current item */}
+            {/* Carousel Component */}
             <Carousel
-              className="w-full max-w-md sm:max-w-lg"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
               activeIndex={activeIndex}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
             >
               <CarouselContent className="flex justify-center">
-                {/* Map through projects array to render each project as a CarouselItem */}
                 {projects.map((project, index) => (
                   <CarouselItem key={index} className="basis-full flex justify-center">
-                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300">
+                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                       <a
                         href={project.link}
                         aria-label={`${project.title} link`}
                         className="block text-center"
                       >
-                        <h3 className="text-base sm:text-lg font-bold mb-2">{project.title}</h3>
-                        <p className="text-sm sm:text-base">{project.description}</p>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm sm:text-base md:text-lg">{project.description}</p>
                       </a>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
 
-              {/* Carousel Navigation Buttons - Allow user to move between items */}
+              {/* Carousel Navigation Buttons */}
               <div className="flex justify-center gap-2 mt-4">
                 <CarouselPrevious onClick={handlePrevious} />
                 <CarouselNext onClick={handleNext} />
