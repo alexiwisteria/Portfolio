@@ -44,7 +44,7 @@ const WakaTimePieChart = () => {
         const dataValues = languageData.map((item) => item.percent);
 
         const lightColors = ['#E0ECE4', '#F7F2E7', '#D8D3CD', '#797A7E', '#FFFFFF', '#A6A6A6'];
-        const darkColors = ['#B8C8BF', '#E4DABC', '#BFB6A6', '#666667', '#000000', '#858585'];
+        const darkColors = ['#B8C8BF', '#E4DABC', '#BFB6A6', '#666667', '#A6A6A6', '#858585'];
 
         setChartData({
           labels,
