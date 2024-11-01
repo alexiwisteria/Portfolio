@@ -3,14 +3,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Card component - Renders a styled card with a title and content.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.title - Title displayed at the top of the card.
+ * @param {React.ReactNode} props.content - Main content of the card, displayed below the title.
+ * @returns {JSX.Element} The rendered Card component.
+ */
 const Card = ({ title, content }) => {
   return (
-    <div className="uses-card p-6 max-w-lg mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
-      <h3 className="m-0 text-lg font-bold text-center font-cutive-mono text-lightText dark:text-darkText transition-colors duration-300 tracking-wide">
+    <div className="card-container p-6 max-w-lg mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText transition-colors duration-300">
+      <h3 className="text-lg font-bold text-center font-cutive-mono tracking-wide m-0">
         {title}
       </h3>
-      <div className="m-0 mt-4 text-left leading-relaxed space-y-4 font-cutive-mono text-sm sm:text-base md:text-lg mb-4 text-darkBackground dark:text-darkText transition-all duration-300">
-        {/* Apply the color to <p> elements */}
+      <div className="content-container mt-4 leading-relaxed font-cutive-mono text-sm sm:text-base md:text-lg space-y-4">
+        {/* Apply color styling to content paragraphs */}
         <div className="prose prose-p:text-darkBackground dark:prose-p:text-white">
           {content}
         </div>

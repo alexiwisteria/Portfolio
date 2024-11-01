@@ -8,6 +8,17 @@ import {
   CardFooter,
 } from "@/components/ProjectCard/ProjectCard";
 
+/**
+ * ProjectCard component to display an individual project's details.
+ *
+ * @param {Object} props - The project details.
+ * @param {string} props.title - Title of the project.
+ * @param {string} props.description - Brief description of the project.
+ * @param {string} props.link - Link to the project or details page.
+ * @param {string} [props.content] - Additional content or details about the project.
+ * @param {string} [props.footer] - Footer text, typically used for technologies or stack info.
+ * @returns {JSX.Element} Rendered ProjectCard component.
+ */
 const ProjectCard = ({ title, description, link, content, footer }) => {
   return (
     <a
@@ -41,7 +52,13 @@ const ProjectCard = ({ title, description, link, content, footer }) => {
   );
 };
 
+/**
+ * Projects component - Displays a list of project cards in a responsive grid layout.
+ *
+ * @returns {JSX.Element} The Projects component layout.
+ */
 export default function Projects() {
+  // List of projects to be displayed
   const projects = [
     {
       title: "Project 1",
@@ -70,8 +87,8 @@ export default function Projects() {
       content: "Additional details about project 4",
       footer: "Technologies used: TypeScript, Node.js",
       link: "/projects/project4",
-    }
-    // Add more projects as needed
+    },
+    // Additional projects can be added here as needed
   ];
 
   return (

@@ -8,35 +8,45 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
-  CarouselNext
+  CarouselNext,
 } from "@/components/Carousel/carousel";
 
-// About component - Primary function for the About page content
+/**
+ * About component - Main layout for the About page with user info, skills, and projects.
+ *
+ * @returns {JSX.Element} The About page component.
+ */
 export default function About() {
   const projects = [
     {
       title: "Data Structures",
       description: "Brief description of Project 1.",
-      link: "https://example.com/project1"
+      link: "https://example.com/project1",
     },
     {
       title: "Frontend Applications",
       description: "Brief description of Project 2.",
-      link: "https://example.com/project2"
+      link: "https://example.com/project2",
     },
     {
       title: "Object Oriented Programming",
       description: "Brief description of Project 3.",
-      link: "https://example.com/project3"
-    }
+      link: "https://example.com/project3",
+    },
   ];
 
   const [activeIndex, setActiveIndex] = React.useState(0);
 
+  /**
+   * Handle going to the previous carousel item.
+   */
   const handlePrevious = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
   };
 
+  /**
+   * Handle going to the next carousel item.
+   */
   const handleNext = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
   };
@@ -80,7 +90,7 @@ export default function About() {
             <SkillsWidget />
           </div>
 
-          {/* Carousel Section */}
+          {/* Carousel Section for Projects */}
           <div className="md:col-span-2 flex flex-col items-center w-full">
             <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-4 sm:mb-6">
               Check Out My Coursework
@@ -99,7 +109,7 @@ export default function About() {
                     <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md transition-colors duration-300 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
                       <a
                         href={project.link}
-                        aria-label={`${project.title} link`}
+                        aria-label={`Link to ${project.title}`}
                         className="block text-center"
                       >
                         <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">

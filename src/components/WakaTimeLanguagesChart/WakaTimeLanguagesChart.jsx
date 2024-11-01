@@ -4,24 +4,37 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { FaPython, FaJsSquare, FaJava, FaPhp, FaHtml5, FaCss3Alt, FaSwift, FaFileCode } from 'react-icons/fa';
+import {
+  FaPython, FaJsSquare, FaJava, FaPhp, FaHtml5, FaCss3Alt, FaSwift, FaFileCode
+} from 'react-icons/fa';
 import { VscJson } from 'react-icons/vsc';
 import { SiMarkdown } from 'react-icons/si';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+/**
+ * WakaTimePieChart Component
+ * Renders a Pie chart displaying coding time percentages for various languages.
+ * Fetches data from WakaTime API and adapts theme based on user settings.
+ *
+ * @component
+ * @returns {JSX.Element} WakaTimePieChart component
+ */
 const WakaTimePieChart = () => {
-  const [chartData, setChartData] = useState(null);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [chartData, setChartData] = useState(null); // Stores chart data
+  const [isDarkTheme, setIsDarkTheme] = useState(false); // Tracks theme
 
+  /**
+   * Updates theme state based on the presence of a 'dark' class on <html>.
+   */
   useEffect(() => {
     const updateTheme = () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      setIsDarkTheme(isDark);
+      setIsDarkTheme(document.documentElement.classList.contains('dark'));
     };
 
     updateTheme();
 
+    // Watch for changes to <html> class attribute for theme updates
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
@@ -31,6 +44,9 @@ const WakaTimePieChart = () => {
     return () => observer.disconnect();
   }, []);
 
+  /**
+   * Fetches language data from WakaTime API and processes it for chart display.
+   */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,6 +81,7 @@ const WakaTimePieChart = () => {
     fetchData();
   }, [isDarkTheme]);
 
+  // Display loading state if chart data is still loading
   if (!chartData) {
     return (
       <div className="w-full p-4 rounded-md bg-white text-gray-800 dark:bg-black dark:text-gray-400 font-cutive-mono">
@@ -73,7 +90,9 @@ const WakaTimePieChart = () => {
     );
   }
 
-  // Determine chart size based on screen width
+  /**
+   * Determine chart size dynamically based on screen width.
+   */
   const chartSize = {
     width: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
     height: window.innerWidth >= 1024 ? 400 : window.innerWidth >= 768 ? 300 : 200,
@@ -105,11 +124,7 @@ const WakaTimePieChart = () => {
                 mode: 'index',
                 intersect: false,
                 callbacks: {
-                  label: function (context) {
-                    const label = context.label || '';
-                    const value = context.raw || 0;
-                    return `${label}: ${value.toFixed(2)}%`;
-                  },
+                  label: (context) => `${context.label || ''}: ${context.raw.toFixed(2)}%`,
                 },
                 bodyFont: { family: 'Cutive Mono' },
                 titleFont: { family: 'Cutive Mono', size: 12 },
@@ -145,28 +160,30 @@ const WakaTimePieChart = () => {
   );
 };
 
+// Mapping language names to icons
 const languageIcons = {
-  'Python': <FaPython />,
-  'JavaScript': <FaJsSquare />,
-  'Java': <FaJava />,
-  'PHP': <FaPhp />,
-  'HTML': <FaHtml5 />,
-  'CSS': <FaCss3Alt />,
-  'Swift': <FaSwift />,
-  'JSON': <VscJson />,
-  'Markdown': <SiMarkdown />,
+  Python: <FaPython />,
+  JavaScript: <FaJsSquare />,
+  Java: <FaJava />,
+  PHP: <FaPhp />,
+  HTML: <FaHtml5 />,
+  CSS: <FaCss3Alt />,
+  Swift: <FaSwift />,
+  JSON: <VscJson />,
+  Markdown: <SiMarkdown />,
 };
 
+// Mapping language names to documentation links
 const documentationLinks = {
-  'Python': 'https://docs.python.org/3/',
-  'JavaScript': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-  'Java': 'https://docs.oracle.com/javase/8/docs/',
-  'PHP': 'https://www.php.net/docs.php',
-  'HTML': 'https://developer.mozilla.org/en-US/docs/Web/HTML',
-  'CSS': 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-  'Swift': 'https://developer.apple.com/documentation/swift',
-  'JSON': 'https://www.json.org/json-en.html',
-  'Markdown': 'https://www.markdownguide.org/',
+  Python: 'https://docs.python.org/3/',
+  JavaScript: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  Java: 'https://docs.oracle.com/javase/8/docs/',
+  PHP: 'https://www.php.net/docs.php',
+  HTML: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+  CSS: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+  Swift: 'https://developer.apple.com/documentation/swift',
+  JSON: 'https://www.json.org/json-en.html',
+  Markdown: 'https://www.markdownguide.org/',
 };
 
 export default WakaTimePieChart;

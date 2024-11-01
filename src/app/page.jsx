@@ -8,37 +8,49 @@ import WakaTimeBarChart from '../components/WakaTimeBarChart/WakaTimeBarChart';
 import LanguagePieChart from '../components/WakaTimeLanguagesChart/WakaTimeLanguagesChart';
 import { Cutive_Mono } from "@next/font/google";
 
-// Import Cutive Mono font
+// Initialize Cutive Mono font
 const cutiveMono = Cutive_Mono({
   weight: "400",
   subsets: ["latin"],
 });
 
+/**
+ * Home component showcasing introductory text, image, and charts with theme handling.
+ *
+ * @returns {JSX.Element} The Home page layout with theme-based styling.
+ */
 const Home = () => {
+  // State to manage theme, initializing as false (light theme by default)
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
-    // Check theme from `html` class and set `isDarkTheme`
+    /**
+     * Updates the theme state based on the presence of the 'dark' class on the `html` element.
+     */
     const updateTheme = () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      setIsDarkTheme(isDark);
+      const isDarkModeActive = document.documentElement.classList.contains('dark');
+      setIsDarkTheme(isDarkModeActive);
     };
 
-    // Initialize theme
+    // Set initial theme state
     updateTheme();
 
-    // Observe changes to the class list on `html`
+    // Observe changes in the `html` class attribute for theme toggling
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
     });
 
+    // Cleanup observer on component unmount
     return () => observer.disconnect();
   }, []);
 
+  // Define theme-based classes for easy reusability across sections
+  const themeClasses = `${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} transition-colors duration-300 ${cutiveMono.className}`;
+
   return (
-    <div className={`container mx-auto p-4 md:p-8 transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} ${cutiveMono.className}`}>
+    <div className={`container mx-auto p-4 md:p-8 ${themeClasses}`}>
 
       {/* Intro Section */}
       <section className="flex flex-col md:flex-row items-center mb-10 md:mb-16 max-w-5xl mx-auto space-y-6 md:space-y-0 px-4">
@@ -66,20 +78,20 @@ const Home = () => {
       <section className="flex justify-center mt-16 md:mt-20 mb-16 md:mb-20 max-w-full md:max-w-5xl mx-auto px-4">
         <Button
           href="/projects"
-          customClasses={`extra-class text-md md:text-lg transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'}`}
-          handleClick={() => console.log("Button clicked!")}
+          customClasses={`extra-class text-md md:text-lg ${themeClasses}`}
+          handleClick={() => console.log("Projects Portal button clicked!")}
         >
           Projects Portal
         </Button>
       </section>
 
       {/* Weekly Coding Bar Chart Section */}
-      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}>
         <WakaTimeBarChart />
       </section>
 
       {/* Language Pie Chart Section */}
-      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 transition-colors duration-300 ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}>
         <LanguagePieChart />
       </section>
     </div>

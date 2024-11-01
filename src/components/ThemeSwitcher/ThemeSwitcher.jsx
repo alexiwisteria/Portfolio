@@ -2,9 +2,17 @@
 import { useEffect, useState } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 
+/**
+ * ThemeSwitcher component - Toggles between light and dark themes.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.darkClassName - Class name for dark theme on the root element.
+ * @returns {JSX.Element} The rendered ThemeSwitcher component.
+ */
 export default function ThemeSwitcher({ darkClassName }) {
-  const [isDark, setIsDark] = useState(false); // Start in light mode
+  const [isDark, setIsDark] = useState(false); // Initial theme state
 
+  // On component mount, check for saved theme and apply it
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -16,6 +24,10 @@ export default function ThemeSwitcher({ darkClassName }) {
     }
   }, [darkClassName]);
 
+  /**
+   * Toggles the theme between light and dark modes.
+   * Updates both local storage and the root element class list.
+   */
   const toggleTheme = () => {
     if (isDark) {
       document.documentElement.classList.remove(darkClassName);
