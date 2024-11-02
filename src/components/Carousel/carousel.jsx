@@ -1,129 +1,183 @@
-import * as React from "react";
-import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+"use client";
 
-/**
- * Carousel styling variants using class-variance-authority.
- */
-const carouselVariants = cva(
-  "relative flex overflow-hidden rounded-md transition-all",
-  {
-    variants: {
-      variant: {
-        default: "bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText",
-        bordered: "border border-lightBorder bg-lightBackground text-lightText dark:border-darkBorder dark:bg-darkBackground dark:text-darkText",
-        shadowed: "shadow-lg bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText",
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/Button/Button";
+
+const CarouselContext = React.createContext(null);
+
+function useCarousel() {
+  const context = useContext(CarouselContext);
+  if (!context) {
+    throw new Error("useCarousel must be used within a <Carousel />");
+  }
+  return context;
+}
+
+const Carousel = React.forwardRef(
+  ({ orientation = "horizontal", opts, setApi, plugins, className, children, ...props }, ref) => {
+    const [carouselRef, api] = useEmblaCarousel(
+      { ...opts, axis: orientation === "horizontal" ? "x" : "y" },
+      plugins
+    );
+    const [canScrollPrev, setCanScrollPrev] = useState(false);
+    const [canScrollNext, setCanScrollNext] = useState(false);
+
+    const onSelect = useCallback((api) => {
+      if (!api) return;
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    }, []);
+
+    const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
+    const scrollNext = useCallback(() => api?.scrollNext(), [api]);
+
+    const handleKeyDown = useCallback(
+      (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          scrollPrev();
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          scrollNext();
+        }
       },
-      size: {
-        default: "w-full max-w-lg",
-        small: "w-72",
-        large: "w-full max-w-2xl",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+      [scrollPrev, scrollNext]
+    );
+
+    useEffect(() => {
+      if (api && setApi) setApi(api);
+    }, [api, setApi]);
+
+    useEffect(() => {
+      if (!api) return;
+      onSelect(api);
+      api.on("reInit", onSelect);
+      api.on("select", onSelect);
+      return () => {
+        api.off("select", onSelect);
+      };
+    }, [api, onSelect]);
+
+    return (
+      <CarouselContext.Provider
+        value={{
+          carouselRef,
+          api,
+          orientation,
+          scrollPrev,
+          scrollNext,
+          canScrollPrev,
+          canScrollNext,
+        }}
+      >
+        <div
+          ref={ref}
+          onKeyDownCapture={handleKeyDown}
+          className={cn("relative max-w-[84%] mx-auto", className)} // Add max width and center alignment
+          role="region"
+          aria-roledescription="carousel"
+          {...props}
+        >
+          {children}
+        </div>
+      </CarouselContext.Provider>
+    );
   }
 );
-
-/**
- * Main Carousel component.
- *
- * @param {Object} props - Component props.
- * @param {string} [props.variant="default"] - Visual variant of the carousel.
- * @param {string} [props.size="default"] - Size variant of the carousel.
- * @param {React.ReactNode} props.children - Content items to be displayed in the carousel.
- * @param {number} props.activeIndex - Index of the currently active item.
- * @param {Function} props.handleNext - Callback to handle the "next" button click.
- * @param {Function} props.handlePrevious - Callback to handle the "previous" button click.
- * @param {React.Ref} ref - Ref forwarded to the carousel element.
- * @returns {JSX.Element} The rendered Carousel component.
- */
-const Carousel = React.forwardRef(
-  ({ className, variant = "default", size = "default", children, activeIndex, handleNext, handlePrevious, ...props }, ref) => (
-    <div className={cn(carouselVariants({ variant, size, className }))} ref={ref} {...props}>
-      <CarouselContent activeIndex={activeIndex}>{children}</CarouselContent>
-      <CarouselPrevious onClick={handlePrevious} />
-      <CarouselNext onClick={handleNext} />
-    </div>
-  )
-);
-
 Carousel.displayName = "Carousel";
 
-/**
- * CarouselContent component to wrap and transition between carousel items.
- *
- * @param {Object} props - Component props.
- * @param {number} props.activeIndex - Index of the active carousel item.
- * @param {React.ReactNode} props.children - Carousel items to display.
- * @returns {JSX.Element} The CarouselContent component.
- */
-const CarouselContent = ({ className, children, activeIndex, ...props }) => (
-  <div
-    className={cn("flex", className)}
-    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-    {...props}
-  >
-    {React.Children.map(children, (child) => (
-      <div className="flex-shrink-0 w-full">{child}</div>
-    ))}
-  </div>
-);
+const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
+  const { carouselRef, orientation } = useCarousel();
+  return (
+    <div ref={carouselRef} className="overflow-hidden">
+      <div
+        ref={ref}
+        className={cn(
+          "flex", // Faster slide transition
+          orientation === "horizontal" ? "-ml-2" : "-mt-2 flex-col",
+          className
+        )}
+        {...props}
+      />
+    </div>
+  );
+});
+CarouselContent.displayName = "CarouselContent";
 
-/**
- * CarouselItem component - Each individual item within the carousel.
- *
- * @param {Object} props - Component props.
- * @param {React.ReactNode} props.children - Content to display within the carousel item.
- * @param {React.Ref} ref - Ref forwarded to the carousel item element.
- * @returns {JSX.Element} The CarouselItem component.
- */
-const CarouselItem = React.forwardRef(({ className, children, ...props }, ref) => (
-  <div className={cn("transition-transform", className)} ref={ref} {...props}>
-    {children}
-  </div>
-));
-
+const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) => {
+  const { orientation } = useCarousel();
+  return (
+    <button
+      ref={ref}
+      role="group"
+      aria-roledescription="slide"
+      className={cn(
+        "min-w-0 shrink-0 grow-0 basis-full transform hover:scale-105 focus:outline-none", // Faster hover transition
+        orientation === "horizontal" ? "pl-2" : "pt-2",
+        className
+      )}
+      onClick={() => window.open(repoLink, "_blank")}
+      {...props}
+    />
+  );
+});
 CarouselItem.displayName = "CarouselItem";
 
-/**
- * CarouselPrevious button to navigate to the previous carousel item.
- *
- * @param {Object} props - Component props.
- * @param {React.Ref} ref - Ref forwarded to the previous button.
- * @returns {JSX.Element} The CarouselPrevious button.
- */
-const CarouselPrevious = React.forwardRef(({ className, ...props }, ref) => (
-  <button
-    className={cn("absolute left-0 z-10 p-2 bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText hover:bg-lightAccent dark:hover:bg-darkAccent transition-colors rounded-full", className)}
-    ref={ref}
-    {...props}
-  >
-    &#10094;
-  </button>
-));
-
+const CarouselPrevious = React.forwardRef(
+  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+    const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        size={size}
+        className={cn(
+          "absolute h-8 w-8 rounded-full transition-transform transform hover:scale-110", // Adds hover zoom effect
+          orientation === "horizontal"
+            ? "-left-12 top-1/2 -translate-y-1/2"
+            : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          className
+        )}
+        disabled={!canScrollPrev}
+        onClick={scrollPrev}
+        {...props}
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span className="sr-only">Previous slide</span>
+      </Button>
+    );
+  }
+);
 CarouselPrevious.displayName = "CarouselPrevious";
 
-/**
- * CarouselNext button to navigate to the next carousel item.
- *
- * @param {Object} props - Component props.
- * @param {React.Ref} ref - Ref forwarded to the next button.
- * @returns {JSX.Element} The CarouselNext button.
- */
-const CarouselNext = React.forwardRef(({ className, ...props }, ref) => (
-  <button
-    className={cn("absolute right-0 z-10 p-2 bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText hover:bg-lightAccent dark:hover:bg-darkAccent transition-colors rounded-full", className)}
-    ref={ref}
-    {...props}
-  >
-    &#10095;
-  </button>
-));
-
+const CarouselNext = React.forwardRef(
+  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+    const { orientation, scrollNext, canScrollNext } = useCarousel();
+    return (
+      <Button
+        ref={ref}
+        variant={variant}
+        size={size}
+        className={cn(
+          "absolute h-8 w-8 rounded-full transition-transform transform hover:scale-110", // Adds hover zoom effect
+          orientation === "horizontal"
+            ? "-right-12 top-1/2 -translate-y-1/2"
+            : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          className
+        )}
+        disabled={!canScrollNext}
+        onClick={scrollNext}
+        {...props}
+      >
+        <ArrowRight className="h-4 w-4" />
+        <span className="sr-only">Next slide</span>
+      </Button>
+    );
+  }
+);
 CarouselNext.displayName = "CarouselNext";
 
 export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };

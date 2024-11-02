@@ -1,21 +1,8 @@
-"use client";
-
-import React from "react";
-import Card from "@/components/Card/Card";
+import React from "react"
+import Card from '../../components/Card/Card';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/Carousel/carousel"
 import SkillsWidget from "@/components/SkillsWidget/SkillsWidget";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/Carousel/carousel";
 
-/**
- * About component - Main layout for the About page with user info, skills, and projects.
- *
- * @returns {JSX.Element} The About page component.
- */
 export default function About() {
   const projects = [
     {
@@ -35,22 +22,6 @@ export default function About() {
     },
   ];
 
-  const [activeIndex, setActiveIndex] = React.useState(0);
-
-  /**
-   * Handle going to the previous carousel item.
-   */
-  const handlePrevious = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
-  };
-
-  /**
-   * Handle going to the next carousel item.
-   */
-  const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  };
-
   return (
     <div className="flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 max-w-4xl mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-lightText min-h-screen">
       <div className="w-full space-y-4 sm:space-y-6 md:space-y-8 flex flex-col items-center">
@@ -62,7 +33,7 @@ export default function About() {
               title="About Me"
               content={
                 <>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl">
+                  <p className="text-base md:text-lg mb-4">
                     I got hooked on software engineering because I love figuring
                     out how things work—and how to make them work better. Right
                     now, I&apos;m a Software Engineering student at Ensign College,
@@ -71,66 +42,48 @@ export default function About() {
                     build software that&apos;s solid, user-friendly, and genuinely
                     useful.
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl mt-4">
+                  <p className="text-base md:text-lg">
                     I also work as a Help Desk Technician at Ensign, where I had a
                     chance to jump into a big project: helping transition our
                     whole campus to a new WiFi network. From troubleshooting
                     network quirks to making sure everything was stable, it taught
                     me a lot about staying calm under pressure and focusing on the
                     details. This experience really reinforced my passion for
-                    Quality Assurance and full stack development.
+                    Quality Assurance and full stack development. I want to create
+                    software that people can rely on—software that feels smooth,
+                    easy, and just works.
                   </p>
                 </>
               }
             />
           </div>
 
-          {/* Skills Widget */}
-          <div className="md:col-span-2 flex justify-center w-full max-w-md sm:max-w-lg lg:max-w-2xl">
-            <SkillsWidget />
+          <div className="md:col-span-2 flex justify-center items-center">
+            <SkillsWidget/>
           </div>
 
           {/* Carousel Section for Projects */}
-          <div className="md:col-span-2 flex flex-col items-center w-full">
-            <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-4 sm:mb-6">
+          <div className="md:col-span-2 flex flex-col w-full translate-x-32">
+            <h1 className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-2xl mb-4 sm:mb-6 dark:text-darkText">
               Check Out My Coursework
             </h1>
-
-            {/* Carousel Component */}
-            <Carousel
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
-              activeIndex={activeIndex}
-              handleNext={handleNext}
-              handlePrevious={handlePrevious}
-            >
-              <CarouselContent className="flex justify-center">
+            <Carousel className="-translate-x-36" orientation="horizontal">
+              <CarouselContent>
                 {projects.map((project, index) => (
-                  <CarouselItem key={index} className="basis-full flex justify-center">
-                    <div className="p-2 sm:p-4 bg-lightBackground dark:bg-darkBackground rounded-md max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-                      <a
-                        href={project.link}
-                        aria-label={`Link to ${project.title}`}
-                        className="block text-center"
-                      >
-                        <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-sm sm:text-base md:text-lg">{project.description}</p>
-                      </a>
+                  <CarouselItem key={index} className="p-4" repoLink={project.link}>
+                    <div className="bg-white rounded-lg shadow p-4">
+                      <h2 className="text-lg font-bold">{project.title}</h2>
+                      <p>{project.description}</p>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-
-              {/* Carousel Navigation Buttons */}
-              <div className="flex justify-center gap-2 mt-4">
-                <CarouselPrevious onClick={handlePrevious} />
-                <CarouselNext onClick={handleNext} />
-              </div>
+              <CarouselPrevious/>
+              <CarouselNext/>
             </Carousel>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

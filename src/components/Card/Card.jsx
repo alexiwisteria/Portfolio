@@ -1,7 +1,15 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { Cutive_Mono } from 'next/font/google';
+
+// Configure the Cutive Mono font for styling
+const cutiveMono = Cutive_Mono({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 /**
  * Card component - Renders a styled card with a title and content.
@@ -13,12 +21,11 @@ import PropTypes from 'prop-types';
  */
 const Card = ({ title, content }) => {
   return (
-    <div className="card-container p-6 max-w-lg mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
-      <h3 className="text-lg font-bold text-center font-cutive-mono tracking-wide m-0">
+    <div className="card-container w-full max-w-lg p-6 mx-auto bg-lightBackground text-lightText dark:bg-darkBackground dark:text-darkText">
+      <h3 className="text-2xl font-bold font-cutive-mono tracking-wide m-0">
         {title}
       </h3>
       <div className="content-container mt-4 leading-relaxed font-cutive-mono text-sm sm:text-base md:text-lg space-y-4">
-        {/* Apply color styling to content paragraphs */}
         <div className="prose prose-p:text-darkBackground dark:prose-p:text-white">
           {content}
         </div>

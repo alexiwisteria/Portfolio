@@ -1,58 +1,49 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
 
-/**
- * ThemeSwitcher component - Toggles between light and dark themes.
- *
- * @param {Object} props - Component props.
- * @param {string} props.darkClassName - Class name for dark theme on the root element.
- * @returns {JSX.Element} The rendered ThemeSwitcher component.
- */
-export default function ThemeSwitcher({ darkClassName }) {
-  const [isDark, setIsDark] = useState(false); // Initial theme state
+import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
+import { FiSun, FiMoon } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
 
-  // On component mount, check for saved theme and apply it
+// ThemeProviderWithSwitcher to wrap your application with theme context
+export function ThemeProviderWithSwitcher({ children }) {
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark" // Set the default theme to "dark"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </NextThemesProvider>
+  );
+}
+
+// ThemeSwitcher button to toggle between light and dark modes
+export function ThemeSwitcher() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add(darkClassName);
-      setIsDark(true);
-    } else {
-      document.documentElement.classList.remove(darkClassName);
-      setIsDark(false);
-    }
-  }, [darkClassName]);
+    setMounted(true);
+  }, []);
 
-  /**
-   * Toggles the theme between light and dark modes.
-   * Updates both local storage and the root element class list.
-   */
+  if (!mounted) return null;
+
   const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove(darkClassName);
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add(darkClassName);
-      localStorage.setItem('theme', 'dark');
-      setIsDark(true);
-    }
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const buttonClass = clsx(
+    "p-2 rounded transition-colors duration-300 flex items-center",
+    theme === "dark" ? "dark:hover:bg-lightAccent" : "hover:bg-darkText"
+  );
+
+  const Icon = theme === "dark" ? FiSun : FiMoon;
+
   return (
-    <button
-      onClick={toggleTheme}
-      className={`${
-        isDark ? 'dark:hover:bg-lightAccent' : 'hover:bg-darkText'
-      } p-2 rounded flex items-center`}
-      aria-label="Toggle theme"
-    >
-      {isDark ? (
-        <FiSun className="text-lightBackground" size={24} />
-      ) : (
-        <FiMoon className="text-darkBackground" size={24} />
-      )}
+    <button onClick={toggleTheme} className={buttonClass} aria-label="Toggle theme">
+      <Icon className={theme === "dark" ? "text-lightBackground" : "text-darkBackground"} size={24} />
     </button>
   );
 }
