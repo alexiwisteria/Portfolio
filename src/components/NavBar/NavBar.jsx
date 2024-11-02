@@ -6,20 +6,29 @@ import Link from "next/link";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher/ThemeSwitcher"; // Adjust path if needed
 import { useTheme } from "next-themes";
 
+/**
+ * Navbar - Responsive navigation component with theme toggle and dropdown menu.
+ * Includes a home link, theme switcher, and links to main sections.
+ * @returns {JSX.Element} Navbar with theme support and dropdown functionality
+ */
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [mounted, setMounted] = useState(false); // Track if theme is mounted
+  const [mounted, setMounted] = useState(false); // Track if theme is mounted to avoid SSR issues
   const dropdownRef = useRef(null);
   const { theme } = useTheme();
 
+  // Set mounted state to true after initial load to enable theme detection
   useEffect(() => {
-    setMounted(true); // Ensure theme is ready
+    setMounted(true);
   }, []);
 
+  // Determine if the current theme is dark
   const isDarkTheme = theme === "dark";
+
+  // Toggle the dropdown menu open/closed state
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
-  // Close dropdown when clicking outside
+  // Close the dropdown when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -37,7 +46,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto flex justify-between items-center">
-        {/* Only render content if mounted */}
+        {/* Ensure content only renders after mounting */}
         {mounted && (
           <>
             <div className="flex items-center space-x-4 relative" ref={dropdownRef}>
@@ -76,30 +85,17 @@ export default function Navbar() {
                   } -translate-x-4 mt-2 rounded`}
                   role="menu"
                 >
-                  <Link
-                    href="/about"
-                    className="block px-4 py-2 transition-colors duration-300 hover:bg-darkText dark:hover:bg-lightAccent"
-                    role="menuitem"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href="/projects"
-                    className="block px-4 py-2 transition-colors duration-300 hover:bg-darkText dark:hover:bg-lightAccent"
-                    role="menuitem"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    Projects
-                  </Link>
-                  <Link
-                    href="/uses"
-                    className="block px-4 py-2 transition-colors duration-300 hover:bg-darkText dark:hover:bg-lightAccent"
-                    role="menuitem"
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    Uses
-                  </Link>
+                  {["about", "projects", "uses"].map((page) => (
+                    <Link
+                      key={page}
+                      href={`/${page}`}
+                      className="block px-4 py-2 transition-colors duration-300 hover:bg-darkText dark:hover:bg-lightAccent"
+                      role="menuitem"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      {page.charAt(0).toUpperCase() + page.slice(1)}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>

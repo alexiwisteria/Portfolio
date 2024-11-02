@@ -1,9 +1,20 @@
 import React from "react";
-import Card from '../../components/Card/Card';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/Carousel/carousel";
+import Card from "../../components/Card/Card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext
+} from "@/components/Carousel/carousel";
 import SkillsWidget from "@/components/SkillsWidget/SkillsWidget";
 
+/**
+ * About - Component to showcase personal information, skills, and coursework projects.
+ * @returns {JSX.Element} About page layout with an introduction card, skills widget, and project carousel.
+ */
 export default function About() {
+  // Define coursework projects to be displayed in the carousel
   const projects = [
     {
       title: "Data Structures",

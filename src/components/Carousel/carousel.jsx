@@ -6,9 +6,14 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/Button/Button";
 
-// Create a context for the carousel to manage its state globally
+// Create a global context for managing carousel state
 const CarouselContext = React.createContext(null);
 
+/**
+ * Custom hook to access the Carousel context.
+ * Throws an error if used outside of a Carousel component.
+ * @returns {Object} Carousel context including ref and control functions
+ */
 function useCarousel() {
   const context = useContext(CarouselContext);
   if (!context) {
@@ -17,6 +22,10 @@ function useCarousel() {
   return context;
 }
 
+/**
+ * Custom hook to detect and manage the dark theme preference.
+ * @returns {boolean} True if the system prefers a dark theme, otherwise false.
+ */
 const useDarkTheme = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
@@ -33,7 +42,15 @@ const useDarkTheme = () => {
   return isDarkTheme;
 };
 
-// Carousel component
+/**
+ * Carousel component wrapping content in a horizontal or vertical scrollable carousel.
+ * @param {Object} props - Carousel properties
+ * @param {"horizontal" | "vertical"} [props.orientation="horizontal"] - Scroll orientation
+ * @param {Array} props.plugins - Plugins to enhance carousel functionality
+ * @param {Object} props.opts - Embla options for carousel configuration
+ * @param {Function} props.setApi - Callback to expose the carousel API
+ * @param {JSX.Element[]} props.children - Carousel items
+ */
 const Carousel = React.forwardRef(
   ({ orientation = "horizontal", opts, setApi, plugins, className, children, ...props }, ref) => {
     const [carouselRef, api] = useEmblaCarousel(
@@ -43,15 +60,18 @@ const Carousel = React.forwardRef(
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
 
+    // Update scroll button states based on carousel position
     const onSelect = useCallback((api) => {
       if (!api) return;
       setCanScrollPrev(api.canScrollPrev());
       setCanScrollNext(api.canScrollNext());
     }, []);
 
+    // Carousel navigation functions
     const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
     const scrollNext = useCallback(() => api?.scrollNext(), [api]);
 
+    // Keyboard navigation
     const handleKeyDown = useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
@@ -65,6 +85,7 @@ const Carousel = React.forwardRef(
       [scrollPrev, scrollNext]
     );
 
+    // Initialize API and subscribe to carousel events
     useEffect(() => {
       if (api && setApi) setApi(api);
     }, [api, setApi]);
@@ -74,9 +95,7 @@ const Carousel = React.forwardRef(
       onSelect(api);
       api.on("reInit", onSelect);
       api.on("select", onSelect);
-      return () => {
-        api.off("select", onSelect);
-      };
+      return () => api.off("select", onSelect);
     }, [api, onSelect]);
 
     return (
@@ -94,7 +113,7 @@ const Carousel = React.forwardRef(
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative max-w-[75%] mx-auto", className)} // Reduced max width for carousel
+          className={cn("relative max-w-[75%] mx-auto", className)}
           role="region"
           aria-roledescription="carousel"
           aria-live="polite"
@@ -108,22 +127,27 @@ const Carousel = React.forwardRef(
 );
 Carousel.displayName = "Carousel";
 
+/**
+ * CarouselContent - Container for the items within the carousel.
+ * @param {Object} props - Component properties
+ * @returns {JSX.Element} Wrapper for carousel items with scroll styling
+ */
 const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return (
     <div
       ref={carouselRef}
-      className={cn("overflow-hidden", className)} // Adds overflow-hidden to prevent spillover
+      className={cn("overflow-hidden", className)}
       style={{
-        width: "425px",   // Set width to match the slide width
-        height: "200px",  // Reduced height
-        borderRadius: "16px", // Set border radius if not using Tailwind
+        width: "425px",
+        height: "200px",
+        borderRadius: "16px",
       }}
     >
       <div
         ref={ref}
         className={cn(
-          "flex flex-nowrap", // Add flex-nowrap to prevent wrapping
+          "flex flex-nowrap",
           orientation === "horizontal" ? "" : "-mt-2 flex-col",
           className
         )}
@@ -134,6 +158,12 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
 });
 CarouselContent.displayName = "CarouselContent";
 
+/**
+ * CarouselItem - Single item component within the carousel.
+ * Opens a provided link when clicked.
+ * @param {string} repoLink - URL to open on click
+ * @param {Object} props - Additional properties
+ */
 const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) => {
   const { orientation } = useCarousel();
 
@@ -146,7 +176,7 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
         "min-w-[425px] max-w-[425px] h-[200px] shrink-0 grow-0 basis-full transform focus:outline-none transition-transform",
         "bg-lightBackground text-lightText border-lightBorder dark:bg-darkBackground dark:text-darkText",
         orientation === "horizontal" ? "pl-2" : "pt-2",
-        "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
+        "hover:bg-darkText dark:hover:bg-lightAccent",
         className
       )}
       onClick={() => window.open(repoLink, "_blank")}
@@ -156,7 +186,11 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
 });
 CarouselItem.displayName = "CarouselItem";
 
-// CarouselPrevious button with updated width and centering adjustments
+/**
+ * CarouselPrevious - Button to scroll to the previous item in the carousel.
+ * @param {Object} props - Component properties
+ * @returns {JSX.Element} Previous button with accessibility and hover effects
+ */
 const CarouselPrevious = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
@@ -172,14 +206,14 @@ const CarouselPrevious = React.forwardRef(
           orientation === "horizontal"
             ? "-left-8 top-1/2 -translate-y-1/2"
             : "-top-8 left-1/2 -translate-x-1/2 rotate-90",
-          "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
+          "hover:bg-darkText dark:hover:bg-lightAccent",
           className
         )}
         disabled={!canScrollPrev}
         onClick={scrollPrev}
         {...props}
       >
-        <ArrowLeft className="h-5 w-5" /> {/* Increased arrow icon size */}
+        <ArrowLeft className="h-5 w-5" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -187,7 +221,11 @@ const CarouselPrevious = React.forwardRef(
 );
 CarouselPrevious.displayName = "CarouselPrevious";
 
-// CarouselNext button with updated width and centering adjustments
+/**
+ * CarouselNext - Button to scroll to the next item in the carousel.
+ * @param {Object} props - Component properties
+ * @returns {JSX.Element} Next button with accessibility and hover effects
+ */
 const CarouselNext = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
@@ -203,14 +241,14 @@ const CarouselNext = React.forwardRef(
           orientation === "horizontal"
             ? "-right-8 top-1/2 -translate-y-1/2"
             : "-bottom-8 left-1/2 -translate-x-1/2 rotate-90",
-          "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
+          "hover:bg-darkText dark:hover:bg-lightAccent",
           className
         )}
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}
       >
-        <ArrowRight className="h-5 w-5" /> {/* Increased arrow icon size */}
+        <ArrowRight className="h-5 w-5" />
         <span className="sr-only">Next slide</span>
       </Button>
     );
