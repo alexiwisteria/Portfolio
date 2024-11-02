@@ -1,6 +1,6 @@
 import { Cutive_Mono } from "@next/font/google";
 import { ThemeProviderWithSwitcher } from "@/components/ThemeSwitcher/ThemeSwitcher";
-import Navbar from "@/components/Navbar/NavBar";
+import Navbar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import "@/app/globals.css";
 
