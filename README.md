@@ -1,37 +1,31 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=16347520)
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio Website
 
-## Getting Started
+Welcome to my portfolio website! This project showcases my skills, projects, and experiences as a software engineer with an interest in full-stack development, AI, and user experience.
 
-First, run the development server:
+## Table of Contents
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Folder Structure](#folder-structure)
+- [Contact](#contact)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the Project
+This portfolio website serves as a personal showcase of my work and professional experience. It highlights projects I have worked on, my technical skills, and my interests in quality assurance and software engineering.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- **Home Page**: A welcoming overview of my skills and career focus.
+- **Projects Section**: Displays key projects, including descriptions and technologies used.
+- **About Section**: Provides background information about me and my career goals.
+- **Uses Section**: Shares my preferred tools and technologies.
 
-You can start editing the page by modifying `app/page.jsx`. The page auto-updates as you edit the file.
+## Technologies Used
+- **React**: Front-end framework used to build the UI.
+- **Next.js**: Provides server-side rendering and routing for optimized performance.
+- **CSS**: Custom styling to give the site a clean and professional look.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Installation
+1. Clone this repository to your local machine:
+   ```bash
+   git clone https://github.com/yourusername/portfolio-website.git
