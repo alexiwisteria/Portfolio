@@ -136,7 +136,6 @@ CarouselContent.displayName = "CarouselContent";
 
 const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) => {
   const { orientation } = useCarousel();
-  const isDarkTheme = useDarkTheme();
 
   return (
     <button
@@ -147,7 +146,7 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
         "min-w-[425px] max-w-[425px] h-[200px] shrink-0 grow-0 basis-full transform focus:outline-none transition-transform",
         "bg-lightBackground text-lightText border-lightBorder dark:bg-darkBackground dark:text-darkText",
         orientation === "horizontal" ? "pl-2" : "pt-2",
-        isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText",
+        "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
         className
       )}
       onClick={() => window.open(repoLink, "_blank")}
@@ -161,7 +160,6 @@ CarouselItem.displayName = "CarouselItem";
 const CarouselPrevious = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
-    const isDarkTheme = useDarkTheme();
 
     return (
       <Button
@@ -169,12 +167,12 @@ const CarouselPrevious = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110", // Increased height, width, and padding for larger buttons
+          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
           "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-left-8 top-1/2 -translate-y-1/2" // Adjusted left positioning for centering
+            ? "-left-8 top-1/2 -translate-y-1/2"
             : "-top-8 left-1/2 -translate-x-1/2 rotate-90",
-          isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText", // Conditional hover styles
+          "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
           className
         )}
         disabled={!canScrollPrev}
@@ -193,7 +191,6 @@ CarouselPrevious.displayName = "CarouselPrevious";
 const CarouselNext = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
-    const isDarkTheme = useDarkTheme();
 
     return (
       <Button
@@ -201,12 +198,12 @@ const CarouselNext = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110", // Increased height, width, and padding for larger buttons
+          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
           "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-right-8 top-1/2 -translate-y-1/2" // Adjusted right positioning for centering
+            ? "-right-8 top-1/2 -translate-y-1/2"
             : "-bottom-8 left-1/2 -translate-x-1/2 rotate-90",
-          isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText", // Conditional hover styles
+          "hover:bg-darkText dark:hover:bg-lightAccent", // Updated hover effect
           className
         )}
         disabled={!canScrollNext}
