@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/Button/Button";
 
+// Create a context for the carousel to manage its state globally
 const CarouselContext = React.createContext(null);
 
 function useCarousel() {
@@ -16,6 +17,23 @@ function useCarousel() {
   return context;
 }
 
+const useDarkTheme = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDarkTheme(darkModeMediaQuery.matches);
+
+    const handleThemeChange = (e) => setIsDarkTheme(e.matches);
+    darkModeMediaQuery.addEventListener("change", handleThemeChange);
+
+    return () => darkModeMediaQuery.removeEventListener("change", handleThemeChange);
+  }, []);
+
+  return isDarkTheme;
+};
+
+// Carousel component
 const Carousel = React.forwardRef(
   ({ orientation = "horizontal", opts, setApi, plugins, className, children, ...props }, ref) => {
     const [carouselRef, api] = useEmblaCarousel(
@@ -76,9 +94,10 @@ const Carousel = React.forwardRef(
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative max-w-[84%] mx-auto", className)} // Add max width and center alignment
+          className={cn("relative max-w-[75%] mx-auto", className)} // Reduced max width for carousel
           role="region"
           aria-roledescription="carousel"
+          aria-live="polite"
           {...props}
         >
           {children}
@@ -92,12 +111,20 @@ Carousel.displayName = "Carousel";
 const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div
+      ref={carouselRef}
+      className={cn("overflow-hidden", className)} // Adds overflow-hidden to prevent spillover
+      style={{
+        width: "425px",   // Set width to match the slide width
+        height: "200px",  // Reduced height
+        borderRadius: "16px", // Set border radius if not using Tailwind
+      }}
+    >
       <div
         ref={ref}
         className={cn(
-          "flex", // Faster slide transition
-          orientation === "horizontal" ? "-ml-2" : "-mt-2 flex-col",
+          "flex flex-nowrap", // Add flex-nowrap to prevent wrapping
+          orientation === "horizontal" ? "" : "-mt-2 flex-col",
           className
         )}
         {...props}
@@ -105,18 +132,21 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
     </div>
   );
 });
-CarouselContent.displayName = "CarouselContent";
 
 const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) => {
   const { orientation } = useCarousel();
+  const isDarkTheme = useDarkTheme();
+
   return (
     <button
       ref={ref}
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full transform hover:scale-105 focus:outline-none", // Faster hover transition
+        "min-w-[425px] max-w-[425px] h-[200px] shrink-0 grow-0 basis-full transform focus:outline-none transition-transform",
+        "bg-lightBackground text-lightText border-lightBorder dark:bg-darkBackground dark:text-darkText",
         orientation === "horizontal" ? "pl-2" : "pt-2",
+        isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText",
         className
       )}
       onClick={() => window.open(repoLink, "_blank")}
@@ -124,28 +154,32 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
     />
   );
 });
-CarouselItem.displayName = "CarouselItem";
 
+// CarouselPrevious button with updated width and centering adjustments
 const CarouselPrevious = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+    const isDarkTheme = useDarkTheme();
+
     return (
       <Button
         ref={ref}
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-8 w-8 rounded-full transition-transform transform hover:scale-110", // Adds hover zoom effect
+          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110", // Increased height, width, and padding for larger buttons
+          "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-left-12 top-1/2 -translate-y-1/2"
-            : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+            ? "-left-8 top-1/2 -translate-y-1/2" // Adjusted left positioning for centering
+            : "-top-8 left-1/2 -translate-x-1/2 rotate-90",
+          isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText", // Conditional hover styles
           className
         )}
         disabled={!canScrollPrev}
         onClick={scrollPrev}
         {...props}
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="h-5 w-5" /> {/* Increased arrow icon size */}
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -153,31 +187,37 @@ const CarouselPrevious = React.forwardRef(
 );
 CarouselPrevious.displayName = "CarouselPrevious";
 
+// CarouselNext button with updated width and centering adjustments
 const CarouselNext = React.forwardRef(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
+    const isDarkTheme = useDarkTheme();
+
     return (
       <Button
         ref={ref}
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-8 w-8 rounded-full transition-transform transform hover:scale-110", // Adds hover zoom effect
+          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110", // Increased height, width, and padding for larger buttons
+          "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-right-12 top-1/2 -translate-y-1/2"
-            : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+            ? "-right-8 top-1/2 -translate-y-1/2" // Adjusted right positioning for centering
+            : "-bottom-8 left-1/2 -translate-x-1/2 rotate-90",
+          isDarkTheme ? "dark:hover:bg-lightAccent" : "hover:bg-darkText", // Conditional hover styles
           className
         )}
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}
       >
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="h-5 w-5" /> {/* Increased arrow icon size */}
         <span className="sr-only">Next slide</span>
       </Button>
     );
   }
 );
 CarouselNext.displayName = "CarouselNext";
+
 
 export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };

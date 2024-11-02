@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <body className="bg-lightBackground dark:bg-darkBackground overflow-x-hidden">
     <ThemeProviderWithSwitcher>
       <Navbar />
-      <main className="min-h-screen my-8 mx-4 sm:mx-12 sm:my-10 md:mx-24 md:my-12 lg:mx-48 lg:my-14 xl:mx-96 xl:my-16">
+      <main className="min-h-screen my-8 mx-8 sm:mx-20 md:mx-32 lg:mx-60 xl:mx-80">
         {children}
       </main>
       <Footer className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16" />

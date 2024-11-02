@@ -63,7 +63,7 @@ export default function About() {
               <CarouselContent>
                 {projects.map((project, index) => (
                   <CarouselItem key={index} className="p-4" repoLink={project.link}>
-                    <div className="bg-white rounded-lg shadow p-4">
+                    <div className="p-4">
                       <h2 className="text-lg font-bold">{project.title}</h2>
                       <p>{project.description}</p>
                     </div>
