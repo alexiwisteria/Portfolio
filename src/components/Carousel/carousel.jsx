@@ -132,6 +132,7 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
     </div>
   );
 });
+CarouselContent.displayName = "CarouselContent";
 
 const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) => {
   const { orientation } = useCarousel();
@@ -154,6 +155,7 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
     />
   );
 });
+CarouselItem.displayName = "CarouselItem";
 
 // CarouselPrevious button with updated width and centering adjustments
 const CarouselPrevious = React.forwardRef(
@@ -218,6 +220,5 @@ const CarouselNext = React.forwardRef(
   }
 );
 CarouselNext.displayName = "CarouselNext";
-
 
 export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
