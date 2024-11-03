@@ -95,7 +95,10 @@ const Carousel = React.forwardRef(
       onSelect(api);
       api.on("reInit", onSelect);
       api.on("select", onSelect);
-      return () => api.off("select", onSelect);
+      return () => {
+        api.off("select", onSelect);
+        api.off("reInit", onSelect);
+      };
     }, [api, onSelect]);
 
     return (
@@ -113,7 +116,11 @@ const Carousel = React.forwardRef(
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative max-w-[75%] mx-auto", className)}
+          className={cn(
+            "relative mx-auto w-full px-4 sm:px-6 lg:px-8",
+            orientation === "horizontal" ? "max-w-4xl" : "max-h-screen",
+            className
+          )}
           role="region"
           aria-roledescription="carousel"
           aria-live="polite"
@@ -137,18 +144,16 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <div
       ref={carouselRef}
-      className={cn("overflow-hidden", className)}
-      style={{
-        width: "425px",
-        height: "200px",
-        borderRadius: "16px",
-      }}
+      className={cn(
+        "overflow-hidden border border-lightAccent dark:border-lightAccent rounded-lg", // Added border classes
+        className
+      )}
     >
       <div
         ref={ref}
         className={cn(
           "flex flex-nowrap",
-          orientation === "horizontal" ? "" : "-mt-2 flex-col",
+          orientation === "horizontal" ? "space-x-4" : "flex-col space-y-4",
           className
         )}
         {...props}
@@ -173,15 +178,19 @@ const CarouselItem = React.forwardRef(({ className, repoLink, ...props }, ref) =
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-[425px] max-w-[425px] h-[200px] shrink-0 grow-0 basis-full transform focus:outline-none transition-transform",
-        "bg-lightBackground text-lightText border-lightBorder dark:bg-darkBackground dark:text-darkText",
-        orientation === "horizontal" ? "pl-2" : "pt-2",
-        "hover:bg-darkText dark:hover:bg-lightAccent",
+        "flex-shrink-0 bg-lightBackground text-lightText border-darkBorder dark:bg-darkBackground dark:text-darkText dark:border-lightBorder",
+        orientation === "horizontal"
+          ? "w-full sm:w-64 md:w-80 lg:w-96 h-48 sm:h-56 md:h-64 lg:h-72"
+          : "w-full h-full",
+        "rounded-lg p-4 hover:bg-darkText dark:hover:bg-lightAccent transition-colors",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
         className
       )}
       onClick={() => window.open(repoLink, "_blank")}
       {...props}
-    />
+    >
+      {/* You can add content here, such as an image or text */}
+    </button>
   );
 });
 CarouselItem.displayName = "CarouselItem";
@@ -201,11 +210,11 @@ const CarouselPrevious = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
+          "absolute flex items-center justify-center h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
           "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-left-8 top-1/2 -translate-y-1/2"
-            : "-top-8 left-1/2 -translate-x-1/2 rotate-90",
+            ? "left-2 sm:left-4 top-1/2 -translate-y-1/2"
+            : "top-2 sm:top-4 left-1/2 -translate-x-1/2 rotate-90",
           "hover:bg-darkText dark:hover:bg-lightAccent",
           className
         )}
@@ -236,11 +245,11 @@ const CarouselNext = React.forwardRef(
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
+          "absolute flex items-center justify-center h-10 w-10 p-2 rounded-full transition-transform transform hover:scale-110",
           "bg-lightBackground text-lightAccent border-lightBorder dark:bg-darkBackground dark:text-darkAccent dark:border-darkBorder",
           orientation === "horizontal"
-            ? "-right-8 top-1/2 -translate-y-1/2"
-            : "-bottom-8 left-1/2 -translate-x-1/2 rotate-90",
+            ? "right-2 sm:right-4 top-1/2 -translate-y-1/2"
+            : "bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 -rotate-90",
           "hover:bg-darkText dark:hover:bg-lightAccent",
           className
         )}
