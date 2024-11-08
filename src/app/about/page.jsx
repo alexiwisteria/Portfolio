@@ -17,19 +17,14 @@ export default function About() {
   // Define coursework projects to be displayed in the carousel
   const projects = [
     {
-      title: "Data Structures",
-      description: "Brief description of Project 1.",
-      link: "https://example.com/project1",
-    },
-    {
-      title: "Frontend Applications",
-      description: "Brief description of Project 2.",
-      link: "https://example.com/project2",
+      "title": "Data Structures",
+      "description": "Java implementations of core data structures, including dynamic arrays, sorting methods, and interfaces. Great for building foundational skills in data organization and Java.",
+      "link": "https://github.com/alexiwisteria/CS335_DataStructures/tree/main"
     },
     {
       title: "Object Oriented Programming",
-      description: "Brief description of Project 3.",
-      link: "https://example.com/project3",
+      description: "A Java project from coursework that demonstrates core Object-Oriented Programming principles, including encapsulation, inheritance, and polymorphism.",
+      link: "https://github.com/alexiwisteria/Object-Oriented-Programming",
     },
   ];
 
