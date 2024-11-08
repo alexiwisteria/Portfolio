@@ -61,32 +61,10 @@ export default function Projects() {
   // List of projects to be displayed
   const projects = [
     {
-      title: "Project 1",
-      description: "Description of project 1",
-      content: "Additional details about project 1",
-      footer: "Technologies used: React, Next.js, Tailwind CSS",
-      link: "/projects/project1",
-    },
-    {
-      title: "Project 2",
-      description: "Description of project 2",
-      content: "Additional details about project 2",
-      footer: "Technologies used: TypeScript, Node.js",
-      link: "/projects/project2",
-    },
-    {
-      title: "Project 3",
-      description: "Description of project 3",
-      content: "Additional details about project 3",
-      footer: "Technologies used: TypeScript, Node.js",
-      link: "/projects/project3",
-    },
-    {
-      title: "Project 4",
-      description: "Description of project 4",
-      content: "Additional details about project 4",
-      footer: "Technologies used: TypeScript, Node.js",
-      link: "/projects/project4",
+      title: "CodePop",
+      description: "Store, categorize, and quickly retrieve code snippets with CodePop, the tool made to help developers build faster and more efficiently.",
+      footer: "Technologies used: Java 21, Spring Boot, H2 Database, JUnit 5, Mockito, Byte Buddy, Spring Boot Maven Plugin ",
+      link: "https://github.com/alexiwisteria/CodePop",
     },
     // Additional projects can be added here as needed
   ];
