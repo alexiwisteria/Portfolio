@@ -2,15 +2,6 @@
 
 Welcome to my portfolio website! This project showcases my skills, projects, and experiences as a software engineer with an interest in full-stack development, AI, and user experience.
 
-## Table of Contents
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [Contact](#contact)
-
 ## About the Project
 This portfolio website serves as a personal showcase of my work and professional experience. It highlights projects I have worked on, my technical skills, and my interests in quality assurance and software engineering.
 
