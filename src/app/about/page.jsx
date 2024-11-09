@@ -26,6 +26,11 @@ export default function About() {
       description: "A Java project from coursework that demonstrates core Object-Oriented Programming principles, including encapsulation, inheritance, and polymorphism.",
       link: "https://github.com/alexiwisteria/Object-Oriented-Programming",
     },
+    {
+      "title": "Hands-On Python",
+      "description": "An interactive introduction to Python with practical coding challenges that cover core concepts like scope, strings, loops, and working with data formats (CSV, JSON). Ideal for early-stage Python users seeking hands-on experience and skill-building.",
+      "link": "https://github.com/alexiwisteria/hands-on-python-course"
+    },
   ];
 
   return (
