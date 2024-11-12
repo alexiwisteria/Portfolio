@@ -102,17 +102,28 @@ const WakaTimePieChart = () => {
               },
               tooltip: {
                 enabled: true,
-                mode: 'index',
+                mode: 'nearest',
                 intersect: false,
                 callbacks: {
-                  label: (context) => `${context.label || ''}: ${context.raw.toFixed(2)}%`,
+                  label: (context) => {
+                    const language = context.label || '';
+                    const percentage = context.raw ? context.raw.toFixed(2) : '0.00';
+                    return `${language}: ${percentage}% of coding time`;
+                  },
+                  afterLabel: (context) => {
+                    return 'Hover over each section for details';
+                  },
                 },
                 bodyFont: { family: 'Cutive Mono' },
                 titleFont: { family: 'Cutive Mono', size: 12 },
+                backgroundColor: isDarkTheme ? '#333' : '#fff',
+                borderColor: isDarkTheme ? '#FFF' : '#333',
+                borderWidth: 1,
               },
             },
           }}
-        />
+        /> {/* Properly closed Pie component */}
+
       </div>
 
       <div className="flex flex-wrap justify-center mt-4">
@@ -141,6 +152,7 @@ const WakaTimePieChart = () => {
   );
 };
 
+// Define icons and documentation links for each language
 const languageIcons = {
   Python: <FaPython />,
   JavaScript: <FaJsSquare />,
