@@ -28,7 +28,7 @@ const cutiveMono = Cutive_Mono({
  */
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={cutiveMono.className} suppressHydrationWarning>
+    <html lang="en" className={`${cutiveMono.className} bg-dotted-grid-light dark:bg-dotted-grid-dark`} suppressHydrationWarning>
     <body className="bg-lightBackground dark:bg-darkBackground overflow-x-hidden">
     {/* ThemeProviderWithSwitcher enables theme toggle between light and dark modes */}
     <ThemeProviderWithSwitcher>

@@ -119,6 +119,8 @@ const WakaTimePieChart = () => {
                 backgroundColor: isDarkTheme ? '#333' : '#fff',
                 borderColor: isDarkTheme ? '#FFF' : '#333',
                 borderWidth: 1,
+                bodyColor: isDarkTheme ? '#FFF' : '#000',
+                titleColor: isDarkTheme ? '#FFF' : '#000',
               },
             },
           }}
