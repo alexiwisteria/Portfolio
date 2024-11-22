@@ -61,10 +61,28 @@ export default function Projects() {
   // List of projects to be displayed
   const projects = [
     {
-      title: "CodePop",
-      description: "Store, categorize, and quickly retrieve code snippets with CodePop, the tool made to help developers build faster and more efficiently.",
-      footer: "Technologies used: Java 21, Spring Boot, H2 Database, JUnit 5, Mockito, Byte Buddy, Spring Boot Maven Plugin ",
-      link: "https://github.com/alexiwisteria/CodePop",
+      title: "Mini Project: First Contributions",
+      description: "Contributed to First Contributions, a beginner-friendly open-source project designed to teach developers how to make their first pull request and contribute to open source with confidence.",
+      footer: "Technologies used: Markdown, Git, GitHub Pull Requests, IntelliJ",
+      link: "https://github.com/firstcontributions/first-contributions/pull/91322",
+    },
+    {
+      "title": "Mini Project: String Reversal Challenge",
+      "description": "Developed a Java program to reverse the order of words in a sentence, showcasing proficiency in string manipulation, array operations, and efficient algorithm design. The solution includes modular methods for splitting strings, reversing arrays in place, and reassembling sentences. Comprehensive unit tests were written using JUnit 5 to validate functionality.",
+      "footer": "Technologies used: Java, JUnit 5, IntelliJ, Algorithm Design",
+      "link": "https://github.com/alexiwisteria/StringReversal"
+    },
+    {
+      "title": "Mini Project: Two Sum Java Project",
+      "description": "Implemented a Java solution to the classic Two Sum problem, optimized with a HashMap for O(n) time complexity. The project includes a TwoSum class with a method to find indices of two numbers in an array that add up to a specific target. Comprehensive unit tests in the TwoSumTest class validate functionality across normal and edge cases.",
+      "footer": "Technologies used: Java, HashMap, JUnit 5, IntelliJ",
+      "link": "https://github.com/alexiwisteria/TwoSum"
+    },
+    {
+      "title": "Mini Project: FizzBuzz Java Project",
+      "description": "Implemented a Java solution to the classic FizzBuzz problem, efficiently generating the sequence up to 10,000. The project includes a `Main` class with a method to generate the FizzBuzz output as a comma-separated string. Comprehensive unit tests in the `MainTest` class validate functionality across normal and edge cases, ensuring robustness and performance.",
+      "footer": "Technologies used: Java, ArrayList, JUnit 5, IntelliJ",
+      "link": "https://github.com/alexiwisteria/FizzBuzz"
     },
     // Additional projects can be added here as needed
   ];
