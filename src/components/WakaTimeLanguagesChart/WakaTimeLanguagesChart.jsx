@@ -43,8 +43,9 @@ const WakaTimePieChart = () => {
         const labels = languageData.map((item) => item.name);
         const dataValues = languageData.map((item) => item.percent);
 
-        const lightColors = ['#E0ECE4', '#F7F2E7', '#D8D3CD', '#797A7E', '#FFFFFF', '#A6A6A6'];
-        const darkColors = ['#B8C8BF', '#E4DABC', '#BFB6A6', '#666667', '#A6A6A6', '#858585'];
+        const lightColors = ['#F2F2F2', '#E5E5E5', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#A6A6A6', '#8C8C8C', '#737373', '#595959', '#404040'];
+
+        const darkColors = ['#F2F2F2', '#E5E5E5', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#A6A6A6', '#8C8C8C', '#737373', '#595959', '#404040'];
 
         setChartData({
           labels,
@@ -53,7 +54,7 @@ const WakaTimePieChart = () => {
               label: 'Coding Time Breakdown (%)',
               data: dataValues,
               backgroundColor: isDarkTheme ? darkColors : lightColors,
-              borderColor: isDarkTheme ? '#FFFFFF' : '#4A4A4A',
+              borderColor: isDarkTheme ? '#FFFFFF' : '#181818',
               borderWidth: 1,
             },
           ],
@@ -68,7 +69,7 @@ const WakaTimePieChart = () => {
 
   if (!chartData) {
     return (
-      <div className="w-full p-4 rounded-md bg-white text-gray-800 dark:bg-black dark:text-gray-400 font-cutive-mono">
+      <div className="w-full p-4 rounded-md bg-lightBackground text-gray-800 dark:bg-darkBackground dark:text-gray-400 font-cutive-mono">
         Loading...
       </div>
     );
@@ -80,7 +81,7 @@ const WakaTimePieChart = () => {
   };
 
   return (
-    <div className={`w-full p-4 md:p-6 lg:p-8 rounded-md ${isDarkTheme ? 'bg-black text-white' : 'bg-white text-black'} font-cutive-mono`}>
+    <div className={`w-full p-4 md:p-6 lg:p-8 rounded-md ${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'} font-cutive-mono`}>
       <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-center mb-4 md:mb-8 lg:mb-8">
         Dev Spectrum: This Week in Code
       </h2>

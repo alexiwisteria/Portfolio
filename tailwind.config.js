@@ -26,10 +26,10 @@ module.exports = {
         lightAccent: '#4a5568',
 
         // Dark theme colors
-        darkBackground: '#000000',
+        darkBackground: '#191919',
         darkText: '#e2e8f0',
-        darkBorder: '#ffffff',
-        darkAccent: '#ffffff',
+        darkBorder: '#545454',
+        darkAccent: '#e2e8f0',
       },
     },
   },

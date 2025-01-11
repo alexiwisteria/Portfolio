@@ -10,7 +10,7 @@ export function ThemeProviderWithSwitcher({ children }) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="dark" // Set the default theme to "dark"
+      defaultTheme="light" // Set the default theme to "light"
       enableSystem
       disableTransitionOnChange
     >

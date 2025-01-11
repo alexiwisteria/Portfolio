@@ -61,6 +61,18 @@ export default function Projects() {
   // List of projects to be displayed
   const projects = [
     {
+      title: "AI Grading Project - Studio E",
+      description: "AIOps: Leading a team-focused AI project utilizing OpenAI's ChatGPT API to explore data pipelines, model optimization, and prompt engineering, with a focus on developing an automated grading system.",
+      footer: "Technologies used: Markdown, Git, GitHub Pull Requests, IntelliJ, OpenAI API, Python, PyTest, Canvas API, Agile Methodology, JSON for data formatting.",
+      link: "https://iron-pump-44b.notion.site/AI-Grading-Project-Studio-E-17879a1c05d380ca8d48f75d560f92ab",
+    },
+    {
+      "title": "Mini Project: Free Code Camp Contribution",
+      "description": "Contributed to Free Code Camp, an open-source project, by editing a quiz question to ensure its accuracy and clarity, improving the learning experience for users.",
+      "footer": "Technologies used: Markdown, Git, GitHub Pull Requests, IntelliJ",
+      "link": "https://github.com/freeCodeCamp/freeCodeCamp/pull/<your_pull_request_number>",
+    },
+    {
       title: "Mini Project: First Contributions",
       description: "Contributed to First Contributions, a beginner-friendly open-source project designed to teach developers how to make their first pull request and contribute to open source with confidence.",
       footer: "Technologies used: Markdown, Git, GitHub Pull Requests, IntelliJ",

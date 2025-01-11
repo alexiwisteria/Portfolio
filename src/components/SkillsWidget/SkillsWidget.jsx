@@ -69,7 +69,7 @@ const SkillsWidget = () => {
             </span>
             <div className="relative flex-1 h-3 sm:h-4 rounded-lg overflow-hidden bg-lightBorder dark:bg-darkBorder">
               <div
-                className="h-3 sm:h-4 bg-lightAccent dark:bg-lightAccent"
+                className="h-3 sm:h-4 bg-lightAccent dark:bg-darkAccent"
                 style={{ width: `${language.proficiency}%` }}
               ></div>
             </div>
