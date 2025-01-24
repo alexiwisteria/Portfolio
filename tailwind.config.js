@@ -2,7 +2,8 @@
 module.exports = {
   darkMode: 'class', // Enables dark mode via 'dark' class on html/body
   content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}', // Streamlined content path for all src files
+    // Streamlined content path for all src files
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -14,7 +15,8 @@ module.exports = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       borderRadius: {
-        lg: 'var(--radius, 0.5rem)', // Default fallback values if CSS variables are not set
+        // Default fallback values if CSS variables are not set
+        lg: 'var(--radius, 0.5rem)',
         md: 'calc(var(--radius, 0.5rem) - 2px)',
         sm: 'calc(var(--radius, 0.5rem) - 4px)',
       },
@@ -35,6 +37,5 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    // Add other Tailwind plugins here if needed
   ],
 };

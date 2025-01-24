@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { Button } from '@/components/Button/Button';
-import { Typewriter } from 'react-simple-typewriter';
-import HomePageImg from '../components/HomePageImage/HomePageImg';
-import WakaTimeBarChart from '../components/WakaTimeBarChart/WakaTimeBarChart';
-import LanguagePieChart from '../components/WakaTimeLanguagesChart/WakaTimeLanguagesChart';
+import React, { useEffect, useState } from "react";
+import { Button } from "@/components/Button/Button";
+import { Typewriter } from "react-simple-typewriter";
+import HomePageImg from "../components/HomePageImage/HomePageImg";
+import WakaTimeBarChart from "../components/WakaTimeBarChart/WakaTimeBarChart";
+import LanguagePieChart from "../components/WakaTimeLanguagesChart/WakaTimeLanguagesChart";
 import { Cutive_Mono } from "@next/font/google";
+import Uses from "./uses/page";
+import Projects from "./projects/page";
+import About from "./about/page";
+import Image from "next/image"; // Importing Image from next/image
 
 // Initialize Cutive Mono font
 const cutiveMono = Cutive_Mono({
@@ -28,7 +32,7 @@ const Home = () => {
      * Updates the theme state based on the presence of the 'dark' class on the `html` element.
      */
     const updateTheme = () => {
-      const isDarkModeActive = document.documentElement.classList.contains('dark');
+      const isDarkModeActive = document.documentElement.classList.contains("dark");
       setIsDarkTheme(isDarkModeActive);
     };
 
@@ -39,7 +43,7 @@ const Home = () => {
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
     // Cleanup observer on component unmount
@@ -47,30 +51,46 @@ const Home = () => {
   }, []);
 
   // Define theme-based classes for easy reusability across sections
-  const themeClasses = `${isDarkTheme ? 'bg-darkBackground text-darkText' : 'bg-lightBackground text-lightText'} 0 ${cutiveMono.className}`;
+  const themeClasses = `${
+    isDarkTheme
+      ? "bg-darkBackground text-darkText"
+      : "bg-lightBackground text-lightText"
+  } ${cutiveMono.className}`;
 
   return (
     <div className={`container mx-auto p-4 md:p-8 ${themeClasses}`}>
-
       {/* Intro Section */}
-      <section className="flex flex-col md:flex-row items-center mb-10 md:mb-16 max-w-5xl mx-auto space-y-6 md:space-y-0 px-4">
+      <section
+        className="flex flex-col md:flex-row items-center mb-10 md:mb-16 max-w-5xl mx-auto space-y-6 md:space-y-0 px-4">
         <div className="flex-1 md:w-2/3">
           <div className="min-h-[4rem] md:min-h-[6rem] h-[150px] md:h-[200px] flex items-center mb-10 md:mb-16">
-            <h1 className={`text-[1.8rem] md:text-[2.8rem] font-bold overflow-hidden break-words max-w-full md:max-w-lg whitespace-pre-wrap ${isDarkTheme ? 'text-white' : 'text-black'}`}>
+            <h1
+              className={`text-[1.8rem] md:text-[2.8rem] font-bold overflow-hidden break-words max-w-full md:max-w-lg whitespace-pre-wrap ${
+                isDarkTheme ? "text-white" : "text-black"
+              }`}
+            >
               <Typewriter
-                words={['Hello, I\'m Alex.', 'Code wizard in training.', 'Java lover, bug slayer.']}
-                loop={false}
+                words={[
+                  "Hello, I'm Alex.",
+                  "Code wizard apprentice, always learning.",
+                  "Java enthusiast."
+                ]}
+                loop={true}
                 cursor
                 cursorStyle="|"
-                typeSpeed={80}
+                typeSpeed={50}
                 deleteSpeed={50}
                 delaySpeed={1000}
               />
             </h1>
           </div>
         </div>
-        <div className="flex-1 flex justify-center mt-4 md:mt-0 md:w-1/3 max-w-xs md:max-w-sm">
-          <HomePageImg />
+        <div className="relative flex justify-center items-center">
+          <img
+            src="/circleimg.png" // Your image path
+            alt="Profile"
+            className="rounded-full w-[220px] h-[220px]" // Adjust width and height as needed
+          />
         </div>
       </section>
 
@@ -86,13 +106,38 @@ const Home = () => {
       </section>
 
       {/* Weekly Coding Bar Chart Section */}
-      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}>
-        <WakaTimeBarChart />
+      <section
+        className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
+      >
+        <WakaTimeBarChart/>
       </section>
 
       {/* Language Pie Chart Section */}
-      <section className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}>
+      <section
+        className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
+      >
         <LanguagePieChart />
+      </section>
+
+      {/* Projects Section */}
+      <section
+        className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
+      >
+        <Projects />
+      </section>
+
+      {/* About Section */}
+      <section
+        className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
+      >
+        <About />
+      </section>
+
+      {/* Uses Section */}
+      <section
+        className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
+      >
+        <Uses />
       </section>
     </div>
   );

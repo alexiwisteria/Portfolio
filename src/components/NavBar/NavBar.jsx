@@ -49,7 +49,7 @@ export default function Navbar() {
         {/* Ensure content only renders after mounting */}
         {mounted && (
           <>
-            <div className="flex items-center space-x-4 relative" ref={dropdownRef}>
+            <div className="hidden flex items-center space-x-4 relative" ref={dropdownRef}>
               {/* Menu Toggle Button */}
               <button
                 onClick={toggleDropdown}
@@ -64,7 +64,7 @@ export default function Navbar() {
               </button>
 
               {/* Home Link */}
-              <Link href="/" className="focus:outline-none flex items-center">
+              <Link href="/" className="focus:outline-none flex items-center hidden">
                 <FaHome
                   size={40}
                   className={`p-2 rounded transition-colors duration-300 ${
@@ -78,7 +78,7 @@ export default function Navbar() {
               {isDropdownOpen && (
                 <div
                   id="dropdown-menu"
-                  className={`absolute top-full w-48 shadow-lg border ${
+                  className={`hidden absolute top-full w-48 shadow-lg border ${
                     isDarkTheme
                       ? "bg-darkBackground text-darkText border-darkBackground"
                       : "bg-lightBackground text-lightText border-lightBorder"
