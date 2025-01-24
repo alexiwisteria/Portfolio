@@ -10,7 +10,6 @@ import { Cutive_Mono } from "@next/font/google";
 import Uses from "./uses/page";
 import Projects from "./projects/page";
 import About from "./about/page";
-import Image from "next/image"; // Importing Image from next/image
 
 // Initialize Cutive Mono font
 const cutiveMono = Cutive_Mono({
@@ -58,14 +57,15 @@ const Home = () => {
   } ${cutiveMono.className}`;
 
   return (
-    <div className={`container mx-auto p-4 md:p-8 ${themeClasses}`}>
-      {/* Intro Section */}
+    <div className={themeClasses}>
+      {/* Hero Section */}
       <section
-        className="flex flex-col md:flex-row items-center mb-10 md:mb-16 max-w-5xl mx-auto space-y-6 md:space-y-0 px-4">
-        <div className="flex-1 md:w-2/3">
-          <div className="min-h-[4rem] md:min-h-[6rem] h-[150px] md:h-[200px] flex items-center mb-10 md:mb-16">
+        className="flex flex-col items-center justify-center md:flex-row mb-10 md:mb-16 max-w-5xl mx-auto space-y-6 md:space-y-0 px-4"
+      >
+        <div className="flex-1 md:w-2/3 flex items-center justify-center">
+          <div className="min-h-[4rem] md:min-h-[6rem] h-[150px] md:h-[200px] flex items-center justify-center mb-10 md:mb-16">
             <h1
-              className={`text-[1.8rem] md:text-[2.8rem] font-bold overflow-hidden break-words max-w-full md:max-w-lg whitespace-pre-wrap ${
+              className={`text-[1.8rem] md:text-[2.8rem] font-bold overflow-hidden break-words max-w-full md:max-w-lg ${
                 isDarkTheme ? "text-white" : "text-black"
               }`}
             >
@@ -73,7 +73,7 @@ const Home = () => {
                 words={[
                   "Hello, I'm Alex.",
                   "Code wizard apprentice, always learning.",
-                  "Java enthusiast."
+                  "Java enthusiast.",
                 ]}
                 loop={true}
                 cursor
@@ -84,13 +84,6 @@ const Home = () => {
               />
             </h1>
           </div>
-        </div>
-        <div className="relative flex justify-center items-center">
-          <img
-            src="/circleimg.png" // Your image path
-            alt="Profile"
-            className="rounded-full w-[220px] h-[220px]" // Adjust width and height as needed
-          />
         </div>
       </section>
 
@@ -109,7 +102,7 @@ const Home = () => {
       <section
         className={`mb-8 md:mb-12 max-w-full md:max-w-5xl mx-auto px-4 ${themeClasses}`}
       >
-        <WakaTimeBarChart/>
+        <WakaTimeBarChart />
       </section>
 
       {/* Language Pie Chart Section */}
