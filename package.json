@@ -2,6 +2,7 @@
   "name": "cs220-portfolio-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://alexiwisteria.github.io/Portfolio/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
